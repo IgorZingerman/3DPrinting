@@ -15,5 +15,5 @@ OnShape:
 [https://www.onshape.com/en/](https://www.onshape.com/en/)
 
 Thingieverse:
-[https://www.thingiverse.com/](https://www.thingiverse.com/)https://www.thingiverse.com/
+[https://www.thingiverse.com/](https://www.thingiverse.com/)
 
