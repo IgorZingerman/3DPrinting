@@ -2,7 +2,7 @@
 Repository for notes, ideas and general things for the DCS 3d Printing Class
 
 # Email The Instructor
-iggyzs@yahoo.com
+iggyzs [at] yahoo.com
 
 # Lets Starts with a Survey
 
