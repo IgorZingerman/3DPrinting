@@ -4,7 +4,7 @@ Repository for notes, ideas and general things for the DCS 3d Printing Class
 # Email The Instructor
 iggyzs [at] yahoo.com
 
-# Lets Starts with a Survey
+# Lets Start with a Survey
 
 [https://forms.gle/xrWTpQZQjV4izrco8](https://forms.gle/xrWTpQZQjV4izrco8)
 
