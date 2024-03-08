@@ -4,10 +4,9 @@ Repository for notes, ideas and general things for the DCS 3d Printing Class
 # Email The Instructor
 iggyzs [at] yahoo.com
 
-# Lets Start with a Survey
+# Project 1: Tic Tac Toe
 
-[https://forms.gle/xrWTpQZQjV4izrco8](https://forms.gle/xrWTpQZQjV4izrco8)
-
+Youtube Link: [https://www.youtube.com/watch?v=1SE1kpHem_0](https://www.youtube.com/watch?v=1SE1kpHem_0)
 
 # Useful Links:
 
@@ -20,3 +19,7 @@ OnShape:
 Thingieverse:
 [https://www.thingiverse.com/](https://www.thingiverse.com/)
 
+
+# Lets Start with a Survey
+
+[https://forms.gle/xrWTpQZQjV4izrco8](https://forms.gle/xrWTpQZQjV4izrco8)
