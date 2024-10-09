@@ -20,6 +20,7 @@ Code: E 3 3 F F I I A B
 
 - Project 1: Name Tag ( TinkerCad )
 - Project 2: Tic Tac Toe Game ( TinkerCad )
+  - Maybe Halloween themed TicTacToe game? With 2d Jack-O'-Lantern or Pumpkins.
 - Project 3: Spinning Top ( OnShape)
 - Project 4: Whistle / Dice ( TinkerCad )
 - Project 5: Launch Rocket ( TinkerCad OR OnShape )
