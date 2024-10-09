@@ -6,6 +6,10 @@ Repository for notes, ideas and general things for the DCS 3d Printing Class
 
 iggyzs [at] yahoo.com
 
+# Lets Start with a Survey
+
+[Class Survey : https://forms.gle/uWkALpHg7p2MgHW77](https://forms.gle/uWkALpHg7p2MgHW77)
+
 # Projects
 
 - Project 1: Name Tag ( TinkerCad )
@@ -21,7 +25,3 @@ TinkerCad:
 
 OnShape:
 [https://www.onshape.com/en/](https://www.onshape.com/en/)
-
-# Lets Start with a Survey
-
-[Class Survey : https://forms.gle/uWkALpHg7p2MgHW77](https://forms.gle/uWkALpHg7p2MgHW77)
