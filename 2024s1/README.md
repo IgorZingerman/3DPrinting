@@ -10,6 +10,11 @@ iggyzs [at] yahoo.com
 
 [Class Survey : https://forms.gle/uWkALpHg7p2MgHW77](https://forms.gle/uWkALpHg7p2MgHW77)
 
+# TinkerCad Class Link
+
+[TinkerCad Class: https://www.tinkercad.com/joinclass/E33FFIIAB](https://www.tinkercad.com/joinclass/E33FFIIAB)
+Code: E 3 3 F F I I A B
+
 # Projects
 
 - Project 1: Name Tag ( TinkerCad )
