@@ -8,11 +8,11 @@ iggyzs [at] yahoo.com
 
 # Lets Start with a Survey
 
-[Class Survey : https://forms.gle/Z5T28Qb2Yb1gSWH5A](https://forms.gle/Z5T28Qb2Yb1gSWH5A)
+Class Survey : [https://forms.gle/Z5T28Qb2Yb1gSWH5A](https://forms.gle/Z5T28Qb2Yb1gSWH5A)
 
 # TinkerCad Class Link
 
-[TinkerCad Class: https://www.tinkercad.com/joinclass/ZLBGKWY5A](https://www.tinkercad.com/joinclass/ZLBGKWY5A)
+TinkerCad Class: [https://www.tinkercad.com/joinclass/ZLBGKWY5A](https://www.tinkercad.com/joinclass/ZLBGKWY5A)
 
 Code: Z L B G K W Y 5A
 
