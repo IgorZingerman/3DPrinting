@@ -1,4 +1,4 @@
-# 3DPrinting
+# 3DPrinting - 2025 Semester 2 ( 2024/2025 School Year)
 
 Repository for notes, ideas and general things for the DCS 3d Printing Class
 
@@ -6,6 +6,29 @@ Repository for notes, ideas and general things for the DCS 3d Printing Class
 
 iggyzs [at] yahoo.com
 
-- [2025 Semester 2 - Spring](2025s2/README.md) ( 2024/2025 school year - _current_ )
-- [2024 Semester 1 - Fall](2024s1/README.md) ( 2024/2025 school year )
-- [2024 Semester 2 - Spring](2024s2/README.md) ( 2023/2024 school year)
+# Lets Start with a Survey
+
+Class Survey : [https://forms.gle/Z5T28Qb2Yb1gSWH5A](https://forms.gle/Z5T28Qb2Yb1gSWH5A)
+
+# TinkerCad Class Link
+
+TinkerCad Class: [https://www.tinkercad.com/joinclass/ZLBGKWY5A](https://www.tinkercad.com/joinclass/ZLBGKWY5A)
+
+Code: Z L B G K W Y 5 A
+
+# Projects
+
+- Project 1: Name Tag ( TinkerCad )
+- Project 2: Rocket Launch ( TinkerCad )
+- Project 3: Spinning Top ( OnShape)
+- Project 4: Whistle / Dice ( TinkerCad )
+  - https://www.instructables.com/Make-a-Whistle-With-Tinkercad/
+- Project 5: Bluetooth Speaker ( Tinker Cad / OnShape )
+
+# Useful Links:
+
+TinkerCad:
+[https://www.tinkercad.com/](https://www.tinkercad.com/)
+
+OnShape:
+[https://www.onshape.com/en/](https://www.onshape.com/en/)

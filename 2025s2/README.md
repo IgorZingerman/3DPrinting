@@ -14,7 +14,7 @@ Class Survey : [https://forms.gle/Z5T28Qb2Yb1gSWH5A](https://forms.gle/Z5T28Qb2Y
 
 TinkerCad Class: [https://www.tinkercad.com/joinclass/ZLBGKWY5A](https://www.tinkercad.com/joinclass/ZLBGKWY5A)
 
-Code: Z L B G K W Y 5A
+Code: Z L B G K W Y 5 A
 
 # Projects
 
@@ -22,6 +22,7 @@ Code: Z L B G K W Y 5A
 - Project 2: Rocket Launch ( TinkerCad )
 - Project 3: Spinning Top ( OnShape)
 - Project 4: Whistle / Dice ( TinkerCad )
+  - https://www.instructables.com/Make-a-Whistle-With-Tinkercad/
 - Project 5: Bluetooth Speaker ( Tinker Cad / OnShape )
 
 # Useful Links:
