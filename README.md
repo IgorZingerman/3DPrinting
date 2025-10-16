@@ -1,4 +1,4 @@
-# 3DPrinting - 2025 Semester 2 ( 2024/2025 School Year)
+# 3DPrinting - 2025 Semester 1 ( 2025/2026 School Year)
 
 Repository for notes, ideas and general things for the DCS 3d Printing Class
 
@@ -12,9 +12,9 @@ Class Survey : [https://forms.gle/Z5T28Qb2Yb1gSWH5A](https://forms.gle/Z5T28Qb2Y
 
 # TinkerCad Class Link
 
-TinkerCad Class: [https://www.tinkercad.com/joinclass/ZLBGKWY5A](https://www.tinkercad.com/joinclass/ZLBGKWY5A)
+TinkerCad Class: [https://www.tinkercad.com/joinclass/ZLBGKWY5A](https://www.tinkercad.com/joinclass/DMXX7IYUF)
 
-Code: Z L B G K W Y 5 A
+Code: D M X X 7 I Y U F
 
 # Projects
 
@@ -23,7 +23,7 @@ Code: Z L B G K W Y 5 A
 - Project 3: Spinning Top ( OnShape)
 - Project 4: Whistle / Dice ( TinkerCad )
   - https://www.instructables.com/Make-a-Whistle-With-Tinkercad/
-- Project 5: Bluetooth Speaker ( Tinker Cad / OnShape )
+- \*Project 5: Bluetooth Speaker ( Tinker Cad / OnShape )
 
 # Useful Links:
 
