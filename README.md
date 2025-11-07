@@ -12,7 +12,7 @@ Class Survey : [https://forms.gle/Z5T28Qb2Yb1gSWH5A](https://forms.gle/Z5T28Qb2Y
 
 # TinkerCad Class Link
 
-TinkerCad Class: [https://www.tinkercad.com/joinclass/ZLBGKWY5A](https://www.tinkercad.com/joinclass/DMXX7IYUF)
+TinkerCad Class: [https://www.tinkercad.com/joinclass/DMXX7IYUF](https://www.tinkercad.com/joinclass/DMXX7IYUF)
 
 Code: D M X X 7 I Y U F
 
