@@ -19,11 +19,13 @@ Code: D M X X 7 I Y U F
 # Projects
 
 - Project 1: Name Tag ( TinkerCad )
-- Project 2: Rocket Launch ( TinkerCad )
-- Project 3: Spinning Top ( OnShape)
-- Project 4: Whistle / Dice ( TinkerCad )
-  - https://www.instructables.com/Make-a-Whistle-With-Tinkercad/
-- \*Project 5: Bluetooth Speaker ( Tinker Cad / OnShape )
+- Project 2: Whistle or Dice ( TinkerCad )
+  - [Whistle](https://www.instructables.com/Make-a-Whistle-With-Tinkercad/)
+  - [Dice with Dots (better)](https://www.instructables.com/How-to-Make-Your-Own-6-sided-Dice-on-TinkerCad/]
+  - [Dice with Numbers](https://www.instructables.com/DIY-Dice-in-Tinkercad/)
+- Project 3: Rocket Launch ( TinkerCad )
+- Project 4: Spinning Top ( OnShape)
+- Project 5: Bluetooth Speaker ( Tinker Cad / OnShape )
 
 # Useful Links:
 
