@@ -21,7 +21,7 @@ Code: D M X X 7 I Y U F
 - Project 1: Name Tag ( TinkerCad )
 - Project 2: Whistle or Dice ( TinkerCad )
   - [Whistle](https://www.instructables.com/Make-a-Whistle-With-Tinkercad/)
-  - [Dice with Dots - better](https://www.instructables.com/How-to-Make-Your-Own-6-sided-Dice-on-TinkerCad/]
+  - [Dice with Dots (better)](https://www.instructables.com/How-to-Make-Your-Own-6-sided-Dice-on-TinkerCad/)
   - [Dice with Numbers](https://www.instructables.com/DIY-Dice-in-Tinkercad/)
 - Project 3: Rocket Launch ( TinkerCad )
 - Project 4: Spinning Top ( OnShape)
