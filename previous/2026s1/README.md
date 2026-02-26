@@ -1,4 +1,4 @@
-# 3DPrinting - 2026 Semester 2 ( 2025/2026 School Year)
+# 3DPrinting - 2025 Semester 1 ( 2025/2026 School Year)
 
 Repository for notes, ideas and general things for the DCS 3d Printing Class
 
@@ -12,9 +12,9 @@ Class Survey : [https://forms.gle/Z5T28Qb2Yb1gSWH5A](https://forms.gle/Z5T28Qb2Y
 
 # TinkerCad Class Link
 
-TinkerCad Class: [https://www.tinkercad.com/joinclass/NCBBKPZGV](https://www.tinkercad.com/joinclass/NCBBKPZGV)
+TinkerCad Class: [https://www.tinkercad.com/joinclass/ZLBGKWY5A](https://www.tinkercad.com/joinclass/DMXX7IYUF)
 
-Code: N C B B K P Z G V
+Code: D M X X 7 I Y U F
 
 # Projects
 
