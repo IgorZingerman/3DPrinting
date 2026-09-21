@@ -1,4 +1,4 @@
-# 🖨️ 3D Printing Class - 2026 Semester 1 - Fall ( 2026/2027 School Year)
+# 🖨️ 3D Printing Class - 2026 Semester 2 ( 2025/2026 School Year)
 
 **Welcome, makers!** 👋
 
@@ -10,12 +10,11 @@ No experience needed. If you can click and drag a mouse, you can do this. 🚀
 
 # 🏁 Start Here
 
-Class starts in **October**! Here's what you'll do on the first day:
-
 1. **Take the survey.** Tell me what you like and what you want to make!
-   👉 Survey link: _coming soon_
-2. **Join our TinkerCad class.** I'll give you a link and a class code.
-   👉 TinkerCad class link and code: _coming soon_
+   👉 [Class Survey](https://forms.gle/Z5T28Qb2Yb1gSWH5A)
+2. **Join our TinkerCad class.** Click the link and use the class code below.
+   👉 [Join the TinkerCad Class](https://www.tinkercad.com/joinclass/NCBBKPZGV)
+   🔑 **Class Code:** `N C B B K P Z G V`
 3. **Play around!** Drag some shapes onto the workplane and see what happens. You can't break anything. 😄
 
 ---
