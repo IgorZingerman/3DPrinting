@@ -11,7 +11,7 @@ No experience needed. If you can click and drag a mouse, you can do this. 🚀
 # 🏁 Start Here
 
 1. **Take the survey.** Tell me what you like and what you want to make!
-   👉 [Class Survey](https://forms.gle/Z5T28Qb2Yb1gSWH5A)
+   👉 [Class Survey](https://forms.gle/XYrJNqE8tHRsnWLj6)
 2. **Join our TinkerCad class.** Click the link and use the class code below.
    👉 [Join the TinkerCad Class](https://www.tinkercad.com/joinclass/BWJSXCAPB)
    🔑 **Class Code:** `B W J S X C A P B`
