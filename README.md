@@ -1,3 +1,5 @@
+# https://github.com/IgorZingerman/3DPrinting 
+
 # 🖨️ 3D Printing Class - 2026 Semester 1 ( 2026/2027 School Year)
 
 **Welcome, makers!** 👋
