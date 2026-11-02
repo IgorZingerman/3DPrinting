@@ -31,8 +31,8 @@ No experience needed. If you can click and drag a mouse, you can do this. 🚀
 
 ## Project 2 Help: Whistle or Dice
 
-- 🎵 [Whistle](https://www.instructables.com/Make-a-Whistle-With-Tinkercad/)
-- 🎲 [Dice with Dots (better)](https://www.instructables.com/How-to-Make-Your-Own-6-sided-Dice-on-TinkerCad/)
+- 🎵 [Whistle: our step-by-step guide (PDF)](guides/Whistle-TinkerCad-Guide.pdf) (adapted from [this Instructables guide](https://www.instructables.com/3D-Printing-Whistle/) by Ally Zhao)
+- 🎲 [Dice with Dots: our step-by-step guide (PDF)](guides/Dice-TinkerCad-Guide.pdf) (adapted from [this Instructables guide](https://www.instructables.com/How-to-Make-Your-Own-6-sided-Dice-on-TinkerCad/) by Potato_Person_)
 - 🔢 [Dice with Numbers](https://www.instructables.com/DIY-Dice-in-Tinkercad/)
 
 ---

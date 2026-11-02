@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<title>Make Your Own Dice in TinkerCad</title>
+<style>
+@page { size: Letter; margin: 0; }
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; background: #fff; }
+body { font-family: "Avenir Next", "Avenir", "Helvetica Neue", Arial, sans-serif; color: #1f2a44;
+       font-size: 12.5pt; line-height: 1.34; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+.page { width: 8.5in; height: 11in; padding: 0.5in 0.65in 0.7in; position: relative;
+        page-break-after: always; break-after: page; overflow: hidden; }
+.page:last-child { page-break-after: auto; break-after: auto; }
+h1, h2, h3, .big { font-family: "Arial Rounded MT Bold", "Avenir Next", Arial, sans-serif; font-weight: 700; }
+h1 { font-size: 36pt; line-height: 1.05; margin: 0 0 8px; }
+h2 { font-size: 21pt; margin: 0 0 10px; display: flex; align-items: center; gap: 12px; }
+h3 { font-size: 14.5pt; margin: 14px 0 6px; }
+p { margin: 6px 0; }
+.num { display: inline-flex; align-items: center; justify-content: center; width: 42px; height: 42px; border-radius: 50%;
+        background: #2a6fdb; color: #fff; font-size: 20pt; flex: none; }
+.sub { font-size: 15pt; color: #4a5672; margin: 0 0 18px; }
+.footer { position: absolute; left: 0.65in; right: 0.65in; bottom: 0.32in; display: flex; justify-content: space-between;
+          gap: 12px; font-size: 8pt; color: #7a849c; white-space: nowrap; border-top: 1px solid #d9dee8; padding-top: 6px; }
+ol.steps { margin: 6px 0 0; padding-left: 0; list-style: none; counter-reset: s; }
+ol.steps > li { counter-increment: s; position: relative; padding: 4px 0 4px 40px; min-height: 30px; }
+ol.steps > li::before { content: "☐"; position: absolute; left: 4px; top: 1px; font-size: 20pt; line-height: 1;
+                         color: #2a6fdb; font-family: "Apple Symbols", "Segoe UI Symbol", sans-serif; }
+kbd { display: inline-block; border: 1.5px solid #1f2a44; border-bottom-width: 3px; border-radius: 6px; padding: 0 7px;
+       font-family: Menlo, Consolas, monospace; font-size: 11pt; background: #f6f7fb; line-height: 1.45; white-space: nowrap; }
+.val { font-family: Menlo, Consolas, monospace; font-weight: 700; background: #fff3d6; border-radius: 4px; padding: 0 5px; }
+.box { border: 2.5px solid #1f2a44; border-radius: 14px; padding: 9px 16px; margin: 10px 0; }
+.tip { border-color: #2a6fdb; background: #eef4ff; }
+.warn { border-color: #e07a5f; background: #fff1ec; }
+.good { border-color: #2e9e6b; background: #ecf8f1; }
+.box .lbl { font-family: "Arial Rounded MT Bold", Arial, sans-serif; font-size: 12pt; text-transform: uppercase;
+             letter-spacing: .04em; margin-bottom: 2px; }
+.tip .lbl { color: #2a6fdb; } .warn .lbl { color: #c4513a; } .good .lbl { color: #2e9e6b; }
+.icon { width: 26px; height: 26px; vertical-align: -7px; background: #fff; border: 1.5px solid #1f2a44; border-radius: 6px; padding: 2px; }
+.cols { display: flex; gap: 22px; align-items: flex-start; }
+.cols > * { flex: 1; }
+.small { font-size: 11pt; }
+.muted { color: #4a5672; }
+/* cover */
+.cover-top { display: flex; align-items: center; gap: 10px; }
+.badge { display: inline-block; background: #ffd166; border-radius: 999px; padding: 3px 14px; font-weight: 700; font-size: 11pt; margin-right: 6px; }
+.needs { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 22px; margin-top: 10px; }
+.needs div { border-left: 5px solid #ffd166; padding-left: 10px; }
+.words dt { font-weight: 700; margin-top: 7px; }
+.words dd { margin: 0 0 0 0; }
+/* dot map */
+table.map { width: 100%; border-collapse: collapse; }
+table.map td { border-bottom: 1.5px solid #d9dee8; padding: 6px 8px; vertical-align: middle; }
+.fcell { width: 140px; white-space: nowrap; }
+.fcell svg { vertical-align: middle; }
+.fnum { display: inline-block; font-family: "Arial Rounded MT Bold", Arial; font-size: 26pt; vertical-align: middle; margin-left: 10px; }
+.opp { width: 130px; color: #4a5672; }
+.moves { font-size: 12pt; line-height: 1.5; columns: 2; column-gap: 18px; }
+/* order */
+.order { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px 14px; margin-top: 16px; }
+.ostep { border: 2.5px solid #1f2a44; border-radius: 14px; padding: 10px 12px 12px; text-align: center; position: relative; }
+.obadge { position: absolute; top: -12px; left: -12px; width: 32px; height: 32px; border-radius: 50%; background: #2a6fdb;
+           color: #fff; font-weight: 700; display: flex; align-items: center; justify-content: center; font-size: 14pt; }
+.oface { font-family: "Arial Rounded MT Bold", Arial; font-size: 15pt; margin-top: 4px; }
+.oturn { font-size: 20pt; font-weight: 700; color: #e07a5f; line-height: 1.1; }
+.odesc { font-size: 10.5pt; color: #4a5672; margin-top: 4px; }
+.checklist li { margin: 5px 0; }
+.lines div { border-bottom: 1.5px solid #b9c1d3; height: 26px; }
+a { color: #2a6fdb; }
+</style></head><body>
+
+<!-- PAGE 1: COVER -->
+<section class="page">
+  <div class="cover-top">
+    <div style="flex:1">
+      <div><span class="badge">Project 2</span><span class="badge" style="background:#cfe3ff">TinkerCad</span><span class="badge" style="background:#d6f2e2">About 45 min</span></div>
+      <h1 style="margin-top:16px">Make Your Own<br>Dice in TinkerCad</h1>
+      <p class="sub">Design a real six-sided die with dots, then 3D print it and play a game with it!</p>
+    </div>
+    <svg width="250" height="250" viewBox="40 30 220 240"><g transform="matrix(87,-50,-87,-50,150,150)"><rect x="0" y="0" width="1" height="1" fill="#ffd166" stroke="#1f2a44" stroke-width="3" vector-effect="non-scaling-stroke" stroke-linejoin="round"/><circle cx="0.25" cy="0.75" r="0.085" fill="#1f2a44"/><circle cx="0.5" cy="0.5" r="0.085" fill="#1f2a44"/><circle cx="0.75" cy="0.25" r="0.085" fill="#1f2a44"/></g><g transform="matrix(-87,-50,0,100,150,150)"><rect x="0" y="0" width="1" height="1" fill="#f4a259" stroke="#1f2a44" stroke-width="3" vector-effect="non-scaling-stroke" stroke-linejoin="round"/><circle cx="0.5" cy="0.5" r="0.085" fill="#1f2a44"/></g><g transform="matrix(87,-50,0,100,150,150)"><rect x="0" y="0" width="1" height="1" fill="#e07a5f" stroke="#1f2a44" stroke-width="3" vector-effect="non-scaling-stroke" stroke-linejoin="round"/><circle cx="0.25" cy="0.75" r="0.085" fill="#1f2a44"/><circle cx="0.75" cy="0.25" r="0.085" fill="#1f2a44"/></g></svg>
+  </div>
+
+  <h3>Here’s the plan</h3>
+  <p>A die is just a <b>cube with little holes</b> in it. In TinkerCad you make holes by putting “hole” shapes
+  into a solid shape and then <b>grouping</b> them. We’ll do <b>one side at a time</b>, always working on the
+  <b>top</b> of the die, then flip it over and do the next side. Easy!</p>
+
+  <div class="needs">
+    <div><b>You need</b><br>Your Chromebook and your TinkerCad class login</div>
+    <div><b>Sizes we’ll use</b><br>Die: <span class="val">20 × 20 × 20</span> mm<br>Dots: <span class="val">4 × 4 × 4</span> mm</div>
+  </div>
+
+  <h3 style="margin-top:22px">Words to know</h3>
+  <dl class="words">
+    <dt><svg class="icon" viewBox="0 0 40 40"><circle cx="20" cy="20" r="14" fill="none" stroke="#1f2a44" stroke-width="3" stroke-dasharray="5 4"/></svg> Hole</dt><dd>A see-through shape. When you group it with a solid shape, it cuts that space away.</dd>
+    <dt><svg class="icon" viewBox="0 0 40 40"><rect x="5" y="9" width="18" height="18" fill="none" stroke="#1f2a44" stroke-width="3"/><circle cx="26" cy="22" r="10" fill="none" stroke="#1f2a44" stroke-width="3"/></svg> Group</dt><dd>Joins shapes into one. This is the moment the holes actually get cut.</dd>
+    <dt><svg class="icon" viewBox="0 0 40 40"><line x1="20" y1="3" x2="20" y2="37" stroke="#1f2a44" stroke-width="3"/><rect x="8" y="8" width="24" height="9" fill="none" stroke="#1f2a44" stroke-width="3"/><rect x="12" y="23" width="16" height="9" fill="none" stroke="#1f2a44" stroke-width="3"/></svg> Align</dt><dd>Lines shapes up perfectly. We use it to put a dot in the exact center.</dd>
+  </dl>
+
+  <div class="box warn"><div class="lbl">Name your design!</div>
+  Your teacher downloads everyone’s dice from TinkerCad to print them. Name yours
+  <b>Dice – First Name Last Initial</b> (like <b>Dice – Maya R</b>) so we know it’s yours. You’ll do this in Step 1.</div>
+  <div class="box tip"><div class="lbl">Golden rule</div>
+  Made a mistake? Press <kbd>Ctrl</kbd> + <kbd>Z</kbd> to undo. You can’t break anything. 😄</div>
+  <div class="footer"><span>🎲 Make Your Own Dice in TinkerCad · adapted from the Instructables guide by Potato_Person_ (CC BY-NC-SA)</span><span>Page 1 of 6</span></div>
+</section>
+
+<!-- PAGE 2: DOT MAP -->
+<section class="page">
+  <h2>🗺️ The Dot Map</h2>
+  <p><b>The secret rule of dice:</b> opposite sides always add up to <b>7</b>.
+  So 1 is across from 6, 2 is across from 5, and 3 is across from 4.</p>
+  <p>Every dot starts in the <b>center</b> of the side. Then you move it with the <b>arrow keys</b>.
+  Each press moves it 1 mm, so “5 →” means <b>press the right arrow 5 times</b>.</p>
+  <table class="map"><tr><td class="fcell"><svg class="face" width="72" height="72" viewBox="0 0 100 100"><rect x="3" y="3" width="94" height="94" rx="14" fill="#fff" stroke="#1f2a44" stroke-width="4"/><circle cx="50" cy="50" r="9" fill="#1f2a44"/><text x="50" y="54.5" text-anchor="middle" font-size="12" font-weight="700" fill="#fff" font-family="Arial">A</text></svg><div class="fnum">1</div></td><td class="opp">across from <b>6</b></td><td class="moves"><b>A</b>&nbsp;stay in center</td></tr><tr><td class="fcell"><svg class="face" width="72" height="72" viewBox="0 0 100 100"><rect x="3" y="3" width="94" height="94" rx="14" fill="#fff" stroke="#1f2a44" stroke-width="4"/><circle cx="25" cy="25" r="9" fill="#1f2a44"/><text x="25" y="29.5" text-anchor="middle" font-size="12" font-weight="700" fill="#fff" font-family="Arial">A</text><circle cx="75" cy="75" r="9" fill="#1f2a44"/><text x="75" y="79.5" text-anchor="middle" font-size="12" font-weight="700" fill="#fff" font-family="Arial">B</text></svg><div class="fnum">2</div></td><td class="opp">across from <b>5</b></td><td class="moves"><b>A</b>&nbsp;5&nbsp;← + 5&nbsp;↑<br><b>B</b>&nbsp;5&nbsp;→ + 5&nbsp;↓</td></tr><tr><td class="fcell"><svg class="face" width="72" height="72" viewBox="0 0 100 100"><rect x="3" y="3" width="94" height="94" rx="14" fill="#fff" stroke="#1f2a44" stroke-width="4"/><circle cx="25" cy="25" r="9" fill="#1f2a44"/><text x="25" y="29.5" text-anchor="middle" font-size="12" font-weight="700" fill="#fff" font-family="Arial">A</text><circle cx="50" cy="50" r="9" fill="#1f2a44"/><text x="50" y="54.5" text-anchor="middle" font-size="12" font-weight="700" fill="#fff" font-family="Arial">B</text><circle cx="75" cy="75" r="9" fill="#1f2a44"/><text x="75" y="79.5" text-anchor="middle" font-size="12" font-weight="700" fill="#fff" font-family="Arial">C</text></svg><div class="fnum">3</div></td><td class="opp">across from <b>4</b></td><td class="moves"><b>A</b>&nbsp;5&nbsp;← + 5&nbsp;↑<br><b>B</b>&nbsp;stay in center<br><b>C</b>&nbsp;5&nbsp;→ + 5&nbsp;↓</td></tr><tr><td class="fcell"><svg class="face" width="72" height="72" viewBox="0 0 100 100"><rect x="3" y="3" width="94" height="94" rx="14" fill="#fff" stroke="#1f2a44" stroke-width="4"/><circle cx="25" cy="25" r="9" fill="#1f2a44"/><text x="25" y="29.5" text-anchor="middle" font-size="12" font-weight="700" fill="#fff" font-family="Arial">A</text><circle cx="75" cy="25" r="9" fill="#1f2a44"/><text x="75" y="29.5" text-anchor="middle" font-size="12" font-weight="700" fill="#fff" font-family="Arial">B</text><circle cx="25" cy="75" r="9" fill="#1f2a44"/><text x="25" y="79.5" text-anchor="middle" font-size="12" font-weight="700" fill="#fff" font-family="Arial">C</text><circle cx="75" cy="75" r="9" fill="#1f2a44"/><text x="75" y="79.5" text-anchor="middle" font-size="12" font-weight="700" fill="#fff" font-family="Arial">D</text></svg><div class="fnum">4</div></td><td class="opp">across from <b>3</b></td><td class="moves"><b>A</b>&nbsp;5&nbsp;← + 5&nbsp;↑<br><b>B</b>&nbsp;5&nbsp;→ + 5&nbsp;↑<br><b>C</b>&nbsp;5&nbsp;← + 5&nbsp;↓<br><b>D</b>&nbsp;5&nbsp;→ + 5&nbsp;↓</td></tr><tr><td class="fcell"><svg class="face" width="72" height="72" viewBox="0 0 100 100"><rect x="3" y="3" width="94" height="94" rx="14" fill="#fff" stroke="#1f2a44" stroke-width="4"/><circle cx="25" cy="25" r="9" fill="#1f2a44"/><text x="25" y="29.5" text-anchor="middle" font-size="12" font-weight="700" fill="#fff" font-family="Arial">A</text><circle cx="75" cy="25" r="9" fill="#1f2a44"/><text x="75" y="29.5" text-anchor="middle" font-size="12" font-weight="700" fill="#fff" font-family="Arial">B</text><circle cx="50" cy="50" r="9" fill="#1f2a44"/><text x="50" y="54.5" text-anchor="middle" font-size="12" font-weight="700" fill="#fff" font-family="Arial">C</text><circle cx="25" cy="75" r="9" fill="#1f2a44"/><text x="25" y="79.5" text-anchor="middle" font-size="12" font-weight="700" fill="#fff" font-family="Arial">D</text><circle cx="75" cy="75" r="9" fill="#1f2a44"/><text x="75" y="79.5" text-anchor="middle" font-size="12" font-weight="700" fill="#fff" font-family="Arial">E</text></svg><div class="fnum">5</div></td><td class="opp">across from <b>2</b></td><td class="moves"><b>A</b>&nbsp;5&nbsp;← + 5&nbsp;↑<br><b>B</b>&nbsp;5&nbsp;→ + 5&nbsp;↑<br><b>C</b>&nbsp;stay in center<br><b>D</b>&nbsp;5&nbsp;← + 5&nbsp;↓<br><b>E</b>&nbsp;5&nbsp;→ + 5&nbsp;↓</td></tr><tr><td class="fcell"><svg class="face" width="72" height="72" viewBox="0 0 100 100"><rect x="3" y="3" width="94" height="94" rx="14" fill="#fff" stroke="#1f2a44" stroke-width="4"/><circle cx="25" cy="25" r="9" fill="#1f2a44"/><text x="25" y="29.5" text-anchor="middle" font-size="12" font-weight="700" fill="#fff" font-family="Arial">A</text><circle cx="25" cy="50" r="9" fill="#1f2a44"/><text x="25" y="54.5" text-anchor="middle" font-size="12" font-weight="700" fill="#fff" font-family="Arial">B</text><circle cx="25" cy="75" r="9" fill="#1f2a44"/><text x="25" y="79.5" text-anchor="middle" font-size="12" font-weight="700" fill="#fff" font-family="Arial">C</text><circle cx="75" cy="25" r="9" fill="#1f2a44"/><text x="75" y="29.5" text-anchor="middle" font-size="12" font-weight="700" fill="#fff" font-family="Arial">D</text><circle cx="75" cy="50" r="9" fill="#1f2a44"/><text x="75" y="54.5" text-anchor="middle" font-size="12" font-weight="700" fill="#fff" font-family="Arial">E</text><circle cx="75" cy="75" r="9" fill="#1f2a44"/><text x="75" y="79.5" text-anchor="middle" font-size="12" font-weight="700" fill="#fff" font-family="Arial">F</text></svg><div class="fnum">6</div></td><td class="opp">across from <b>1</b></td><td class="moves"><b>A</b>&nbsp;5&nbsp;← + 5&nbsp;↑<br><b>B</b>&nbsp;5&nbsp;←<br><b>C</b>&nbsp;5&nbsp;← + 5&nbsp;↓<br><b>D</b>&nbsp;5&nbsp;→ + 5&nbsp;↑<br><b>E</b>&nbsp;5&nbsp;→<br><b>F</b>&nbsp;5&nbsp;→ + 5&nbsp;↓</td></tr></table>
+  <div class="box tip" style="margin-top:14px"><div class="lbl">Keep this page next to you</div>
+  You’ll look back at it for every side. The letters (A, B, C…) are just so you can keep track of which dot you’re on.</div>
+  <div class="footer"><span>🎲 Make Your Own Dice in TinkerCad · adapted from the Instructables guide by Potato_Person_ (CC BY-NC-SA)</span><span>Page 2 of 6</span></div>
+</section>
+
+<!-- PAGE 3: SETUP + FIRST DOT -->
+<section class="page">
+  <h2><span class="num">1</span>Get set up</h2>
+  <ol class="steps">
+    <li>Open TinkerCad and click <b>Create → 3D Design</b>.</li>
+    <li><b>Name it right away!</b> Click the silly random name TinkerCad gave your design (top left), type
+      <b>Dice – First Name Last Initial</b> (like <b>Dice – Maya R</b>), and press <kbd>Enter</kbd>.</li>
+    <li>In the bottom right corner, find <b>Snap Grid</b>. Make sure it says <span class="val">1.0 mm</span>.</li>
+  </ol>
+
+  <h2 style="margin-top:12px"><span class="num">2</span>Make the die block</h2>
+  <ol class="steps">
+    <li>Drag a red <b>Box</b> from Basic Shapes onto the workplane. It’s already <span class="val">20 × 20 × 20</span> mm. 👍</li>
+    <li><b>Optional, but it looks cool:</b> in the Shape panel, slide <b>Radius</b> up to about <span class="val">2</span> to round the corners like real dice.</li>
+  </ol>
+
+  <h2 style="margin-top:12px"><span class="num">3</span>Make your first dot</h2>
+  <div class="cols">
+    <ol class="steps" style="flex:1.25">
+      <li>Drag a <b>Sphere</b> onto the workplane, next to the die.</li>
+      <li>In the Shape panel, click <b>Hole</b> <svg class="icon" viewBox="0 0 40 40"><circle cx="20" cy="20" r="14" fill="none" stroke="#1f2a44" stroke-width="3" stroke-dasharray="5 4"/></svg>. The sphere turns see-through.</li>
+      <li>Make it smaller: hover over a white corner square, click each number that pops up and type <span class="val">4</span>. You want <span class="val">4 × 4 × 4</span>.</li>
+      <li>Lift it up: grab the little <b>black cone</b> on top of the dot, click the height number and type <span class="val">18</span>, then press <kbd>Enter</kbd>.</li>
+    </ol>
+    <div style="flex:1; text-align:center">
+      <svg width="270" height="135" viewBox="0 0 300 150">
+  <defs><pattern id="hatch" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+    <line x1="0" y1="0" x2="0" y2="8" stroke="#f4a259" stroke-width="3"/></pattern></defs>
+  <rect x="40" y="50" width="200" height="90" fill="url(#hatch)" stroke="#1f2a44" stroke-width="3"/>
+  <circle cx="140" cy="50" r="22" fill="#cfe3ff" fill-opacity="0.8" stroke="#2a6fdb" stroke-width="3" stroke-dasharray="6 4"/>
+  <line x1="30" y1="140" x2="30" y2="72" stroke="#1f2a44" stroke-width="2"/>
+  <line x1="24" y1="140" x2="36" y2="140" stroke="#1f2a44" stroke-width="2"/>
+  <line x1="24" y1="72" x2="36" y2="72" stroke="#1f2a44" stroke-width="2"/>
+  <text x="14" y="112" font-size="15" font-weight="700" fill="#1f2a44" transform="rotate(-90 14 112)" text-anchor="middle">18 mm</text>
+  <line x1="245" y1="28" x2="245" y2="72" stroke="#2a6fdb" stroke-width="2"/>
+  <line x1="239" y1="28" x2="251" y2="28" stroke="#2a6fdb" stroke-width="2"/>
+  <line x1="239" y1="72" x2="251" y2="72" stroke="#2a6fdb" stroke-width="2"/>
+  <text x="256" y="55" font-size="15" font-weight="700" fill="#2a6fdb">4 mm</text>
+  <text x="140" y="18" font-size="14" text-anchor="middle" fill="#2a6fdb" font-weight="700">dot (hole)</text>
+  <text x="140" y="110" font-size="15" text-anchor="middle" fill="#1f2a44" font-weight="700">die block (20 mm tall)</text>
+  <line x1="40" y1="72" x2="240" y2="72" stroke="#2a6fdb" stroke-width="1" stroke-dasharray="3 3"/>
+</svg>
+      <p class="small muted" style="margin-top:2px">Why 18? The die is 20 mm tall. Lifting the 4 mm dot to 18 puts it
+      <b>halfway into</b> the top, so it makes a nice round dimple.</p>
+    </div>
+  </div>
+  <h3>Move it to the exact center</h3>
+  <ol class="steps">
+    <li>Drag a box around the die <b>and</b> the dot so both are selected.</li>
+    <li>Click <b>Align</b> <svg class="icon" viewBox="0 0 40 40"><line x1="20" y1="3" x2="20" y2="37" stroke="#1f2a44" stroke-width="3"/><rect x="8" y="8" width="24" height="9" fill="none" stroke="#1f2a44" stroke-width="3"/><rect x="12" y="23" width="16" height="9" fill="none" stroke="#1f2a44" stroke-width="3"/></svg> (or press <kbd>L</kbd>). Small dots appear around your shapes.</li>
+    <li>Click the <b>middle</b> dot on the line along the <b>front</b>, and the <b>middle</b> dot on the line along the <b>side</b>.
+      <b>Don’t</b> click the up-and-down line, or your dot will lose its height!</li>
+  </ol>
+  <div class="box good" style="margin-top:6px"><div class="lbl">Check</div>Your dot should sit right in the middle of the top, half sunk in. That’s side 1! 🎉</div>
+  <div class="footer"><span>🎲 Make Your Own Dice in TinkerCad · adapted from the Instructables guide by Potato_Person_ (CC BY-NC-SA)</span><span>Page 3 of 6</span></div>
+</section>
+
+<!-- PAGE 4: MORE DOTS + GROUP -->
+<section class="page">
+  <h2><span class="num">4</span>Add the other dots</h2>
+  <p>Side 1 only needs one dot, so you can skip this step the first time. For every other side, start with a
+  fresh center dot (Step 3), then:</p>
+  <ol class="steps">
+    <li>Click <b>Top</b> on the view cube (the little cube in the top left) so you’re looking straight down.
+      Now the arrow keys go the same way as the arrows on the Dot Map.</li>
+    <li>Click the center dot and press <kbd>Ctrl</kbd> + <kbd>D</kbd> (Duplicate). A copy appears right on top of it.</li>
+    <li>Use the <b>arrow keys</b> to move the copy. Check the <b>Dot Map</b> for how many presses. Example for dot A on side 4: press <kbd>←</kbd> 5 times and <kbd>↑</kbd> 5 times.</li>
+    <li>Repeat until you have every dot for that side.</li>
+    <li>If this side has <b>no</b> middle dot (sides 2, 4 and 6), click the center dot and press <kbd>Backspace</kbd>.</li>
+  </ol>
+  <div class="box tip"><div class="lbl">Tip</div>Click the view cube’s <b>Home</b> button (the little house) any time to see the die from the side again.
+  Look closely: all the dots should be at the <b>same height</b>.</div>
+
+  <h2 style="margin-top:22px"><span class="num">5</span>Group to cut the holes</h2>
+  <ol class="steps">
+    <li>Press <kbd>Ctrl</kbd> + <kbd>A</kbd> to select everything (the die and this side’s dots).</li>
+    <li>Click <b>Group</b> <svg class="icon" viewBox="0 0 40 40"><rect x="5" y="9" width="18" height="18" fill="none" stroke="#1f2a44" stroke-width="3"/><circle cx="26" cy="22" r="10" fill="none" stroke="#1f2a44" stroke-width="3"/></svg> (or press <kbd>Ctrl</kbd> + <kbd>G</kbd>).</li>
+  </ol>
+  <div class="box good"><div class="lbl">Check</div>The see-through spheres disappear and you have real dimples in the top of your die. 🙌
+  The die is now one shape, so it’s safe to flip it.</div>
+  <div class="box warn"><div class="lbl">Uh oh?</div>If a dot went to the wrong place, press <kbd>Ctrl</kbd> + <kbd>Z</kbd> to undo the group, fix the dot, then group again.</div>
+  <div class="footer"><span>🎲 Make Your Own Dice in TinkerCad · adapted from the Instructables guide by Potato_Person_ (CC BY-NC-SA)</span><span>Page 4 of 6</span></div>
+</section>
+
+<!-- PAGE 5: FLIP + REPEAT -->
+<section class="page">
+  <h2><span class="num">6</span>Flip it and do the next side</h2>
+  <p>We always add dots to the <b>top</b>. So after each side, we turn the die until a <b>blank</b> side is on top.
+  Do the sides in <b>this order</b> and the opposite sides will always add up to 7 automatically!</p>
+  <h3>How to turn the die</h3>
+  <ol class="steps">
+    <li>Click the die. You’ll see three <b>curved arrows</b>. Two are on the <b>sides</b> (those flip it over).
+      The one near the bottom just spins it in place, so don’t use that one.</li>
+    <li>Drag a side arrow around until the number says the angle in the chart below. You can also click the number and type it.</li>
+    <li>If the die ends up floating or sunk into the workplane, press <kbd>D</kbd> to drop it back down.</li>
+  </ol>
+  <div class="order"><div class="ostep"><div class="obadge">1</div><svg class="face" width="54" height="54" viewBox="0 0 100 100"><rect x="3" y="3" width="94" height="94" rx="14" fill="#fff" stroke="#1f2a44" stroke-width="4"/><circle cx="50" cy="50" r="9" fill="#1f2a44"/></svg><div class="oface">Side 1</div><div class="oturn">—</div><div class="odesc">Start here. Nothing to rotate yet.</div></div><div class="ostep"><div class="obadge">2</div><svg class="face" width="54" height="54" viewBox="0 0 100 100"><rect x="3" y="3" width="94" height="94" rx="14" fill="#fff" stroke="#1f2a44" stroke-width="4"/><circle cx="25" cy="25" r="9" fill="#1f2a44"/><circle cx="25" cy="50" r="9" fill="#1f2a44"/><circle cx="25" cy="75" r="9" fill="#1f2a44"/><circle cx="75" cy="25" r="9" fill="#1f2a44"/><circle cx="75" cy="50" r="9" fill="#1f2a44"/><circle cx="75" cy="75" r="9" fill="#1f2a44"/></svg><div class="oface">Side 6</div><div class="oturn">180°</div><div class="odesc">Pick one curved arrow on the <b>side</b> of the die. Turn it <b>180°</b>.</div></div><div class="ostep"><div class="obadge">3</div><svg class="face" width="54" height="54" viewBox="0 0 100 100"><rect x="3" y="3" width="94" height="94" rx="14" fill="#fff" stroke="#1f2a44" stroke-width="4"/><circle cx="25" cy="25" r="9" fill="#1f2a44"/><circle cx="75" cy="75" r="9" fill="#1f2a44"/></svg><div class="oface">Side 2</div><div class="oturn">90°</div><div class="odesc">Same arrow. Turn it <b>90°</b>.</div></div><div class="ostep"><div class="obadge">4</div><svg class="face" width="54" height="54" viewBox="0 0 100 100"><rect x="3" y="3" width="94" height="94" rx="14" fill="#fff" stroke="#1f2a44" stroke-width="4"/><circle cx="25" cy="25" r="9" fill="#1f2a44"/><circle cx="75" cy="25" r="9" fill="#1f2a44"/><circle cx="50" cy="50" r="9" fill="#1f2a44"/><circle cx="25" cy="75" r="9" fill="#1f2a44"/><circle cx="75" cy="75" r="9" fill="#1f2a44"/></svg><div class="oface">Side 5</div><div class="oturn">180°</div><div class="odesc">Same arrow. Turn it <b>180°</b>.</div></div><div class="ostep"><div class="obadge">5</div><svg class="face" width="54" height="54" viewBox="0 0 100 100"><rect x="3" y="3" width="94" height="94" rx="14" fill="#fff" stroke="#1f2a44" stroke-width="4"/><circle cx="25" cy="25" r="9" fill="#1f2a44"/><circle cx="50" cy="50" r="9" fill="#1f2a44"/><circle cx="75" cy="75" r="9" fill="#1f2a44"/></svg><div class="oface">Side 3</div><div class="oturn">90°</div><div class="odesc">Now use the <b>other</b> side arrow. Turn it <b>90°</b>.</div></div><div class="ostep"><div class="obadge">6</div><svg class="face" width="54" height="54" viewBox="0 0 100 100"><rect x="3" y="3" width="94" height="94" rx="14" fill="#fff" stroke="#1f2a44" stroke-width="4"/><circle cx="25" cy="25" r="9" fill="#1f2a44"/><circle cx="75" cy="25" r="9" fill="#1f2a44"/><circle cx="25" cy="75" r="9" fill="#1f2a44"/><circle cx="75" cy="75" r="9" fill="#1f2a44"/></svg><div class="oface">Side 4</div><div class="oturn">180°</div><div class="odesc">Same arrow as before (the other one). Turn it <b>180°</b>.</div></div></div>
+  <div class="box good" style="margin-top:12px"><div class="lbl">Check after every turn</div>
+  The top should be <b>completely blank</b>. If you see dots on top, undo (<kbd>Ctrl</kbd> + <kbd>Z</kbd>) and try the other side arrow.</div>
+  <p style="font-size:14pt; margin-top:10px">Then for each side: <b>Turn</b> ➜ <b>Make a center dot</b> (Step 3) ➜ <b>Add dots</b> (Step 4) ➜ <b>Group</b> (Step 5) ➜ repeat!</p>
+  <div class="footer"><span>🎲 Make Your Own Dice in TinkerCad · adapted from the Instructables guide by Potato_Person_ (CC BY-NC-SA)</span><span>Page 5 of 6</span></div>
+</section>
+
+<!-- PAGE 6: FINISH -->
+<section class="page">
+  <h2><span class="num">7</span>Final check ✅</h2>
+  <p>Click the view cube’s <b>Home</b> button, then drag the view cube to spin around and look at every side. Check each box:</p>
+  <ol class="steps">
+    <li>All six sides have dots: 1, 2, 3, 4, 5 and 6.</li>
+    <li>Opposite sides add up to 7 (1 &amp; 6, 2 &amp; 5, 3 &amp; 4).</li>
+    <li>All the dots are dimples (holes), not bumps sticking out.</li>
+    <li>It’s still about <span class="val">20 × 20 × 20</span> mm and sitting flat on the workplane.</li>
+  </ol>
+
+  <h2 style="margin-top:14px"><span class="num">8</span>Save it and hand it in 💾</h2>
+  <ol class="steps">
+    <li>Check the name at the top left says <b>Dice – First Name Last Initial</b>. Not right? Click it and fix it.</li>
+    <li>TinkerCad saves by itself while you work. To be sure, click the <b>TinkerCad logo</b> (top left) to go back to your
+      designs. Your die should be there with <b>your name on it</b>.</li>
+    <li>Tell your teacher your die is ready! Your teacher will download it from TinkerCad and 3D print it for you. 🖨️</li>
+    <li><b>Done early?</b> Make it yours! Try a different color, rounder corners, or a tiny shape on side 1 instead of a dot (like a star or your initial).
+      Keep the dots at least <span class="val">3</span> mm wide so they show up when printed.</li>
+  </ol>
+
+  <h2 style="margin-top:14px">🤔 Think about it</h2>
+  <p class="small muted">Real designers ask themselves these questions after every project.</p>
+  <p><b>1. What was the hardest part, and how did you figure it out?</b></p>
+  <div class="lines"><div></div><div></div></div>
+  <p style="margin-top:12px"><b>2. If you made another die, what would you do differently?</b></p>
+  <div class="lines"><div></div><div></div></div>
+
+  <div class="box" style="margin-top:14px; border-color:#b9c1d3; font-size:9pt; line-height:1.4">
+    <div class="lbl" style="color:#4a5672">Credits</div>
+    This guide is adapted from
+    <a href="https://www.instructables.com/How-to-Make-Your-Own-6-sided-Dice-on-TinkerCad/">“How to Make Your Own 6-sided Dice on TinkerCad”</a>
+    by <b>Potato_Person_</b> on Instructables, used under a
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons BY-NC-SA</a> license.
+    Thank you, Potato_Person_! <b>Changes:</b> rewritten as a step-by-step classroom worksheet, with new drawings, a dot map,
+    exact sizes (20 mm die, 4 mm dots) and a “work on the top, then flip” method.
+    This adapted version is shared under the same license,
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a>: free to share and change for non-commercial use, as long as you give credit and share alike.
+    TinkerCad is a trademark of Autodesk; this guide is not made by or affiliated with Autodesk or Instructables.
+  </div>
+  <div class="footer"><span>🎲 Make Your Own Dice in TinkerCad · adapted from the Instructables guide by Potato_Person_ (CC BY-NC-SA)</span><span>Page 6 of 6</span></div>
+</section>
+
+</body></html>
