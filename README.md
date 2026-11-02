@@ -42,6 +42,12 @@ No experience needed. If you can click and drag a mouse, you can do this. 🚀
 - 🚀 [Rocket Launch Design Mission (PDF)](guides/Rocket-TinkerCad-Guide.pdf): learn to use calipers, measure the launcher, and design a rocket that fits it
 - 🦶 The launcher we use: a [stomp rocket launcher](https://www.amazon.com/dp/B08RHP7XZ1). Your rocket slides over its launch tube.
 
+## Project 4 Help: Spinning Top (OnShape)
+
+- 🧭 [Getting Started with OnShape (PDF)](guides/OnShape-Getting-Started.pdf): make your account (in class!), tour the screen, and learn how to hand in your work
+- 🌀 [Spinning Top in OnShape (PDF)](guides/SpinningTop-OnShape-Guide.pdf): draw half a top and spin it into 3D with Revolve
+- 📦 Challenge: [Box with a Lid in OnShape (PDF)](guides/BoxWithLid-OnShape-Guide.pdf): two parts that fit together
+
 ---
 
 # 💡 Tips for Awesome Designs
