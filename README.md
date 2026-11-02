@@ -37,6 +37,11 @@ No experience needed. If you can click and drag a mouse, you can do this. 🚀
 - 🎲 [Dice with Dots: our step-by-step guide (PDF)](guides/Dice-TinkerCad-Guide.pdf) (adapted from [this Instructables guide](https://www.instructables.com/How-to-Make-Your-Own-6-sided-Dice-on-TinkerCad/) by Potato_Person_)
 - 🔢 [Dice with Numbers](https://www.instructables.com/DIY-Dice-in-Tinkercad/)
 
+## Project 3 Help: Rocket Launch
+
+- 🚀 [Rocket Launch Design Mission (PDF)](guides/Rocket-TinkerCad-Guide.pdf): learn to use calipers, measure the launcher, and design a rocket that fits it
+- 🦶 The launcher we use: a [stomp rocket launcher](https://www.amazon.com/dp/B08RHP7XZ1). Your rocket slides over its launch tube.
+
 ---
 
 # 💡 Tips for Awesome Designs

@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<title>Rocket Launch Design Mission</title>
+<style>
+@page { size: Letter; margin: 0; }
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; background: #fff; }
+body { font-family: "Avenir Next", "Avenir", "Helvetica Neue", Arial, sans-serif; color: #1f2a44;
+       font-size: 12.5pt; line-height: 1.34; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+.page { width: 8.5in; height: 11in; padding: 0.5in 0.65in 0.7in; position: relative;
+        page-break-after: always; break-after: page; overflow: hidden; }
+.page:last-child { page-break-after: auto; break-after: auto; }
+h1, h2, h3, .big { font-family: "Arial Rounded MT Bold", "Avenir Next", Arial, sans-serif; font-weight: 700; }
+h1 { font-size: 36pt; line-height: 1.05; margin: 0 0 8px; }
+h2 { font-size: 21pt; margin: 0 0 10px; display: flex; align-items: center; gap: 12px; }
+h3 { font-size: 14.5pt; margin: 14px 0 6px; }
+p { margin: 6px 0; }
+.num { display: inline-flex; align-items: center; justify-content: center; width: 42px; height: 42px; border-radius: 50%;
+        background: #2a6fdb; color: #fff; font-size: 20pt; flex: none; }
+.sub { font-size: 15pt; color: #4a5672; margin: 0 0 18px; }
+.footer { position: absolute; left: 0.65in; right: 0.65in; bottom: 0.32in; display: flex; justify-content: space-between;
+          gap: 12px; font-size: 8pt; color: #7a849c; white-space: nowrap; border-top: 1px solid #d9dee8; padding-top: 6px; }
+ol.steps { margin: 6px 0 0; padding-left: 0; list-style: none; counter-reset: s; }
+ol.steps > li { counter-increment: s; position: relative; padding: 4px 0 4px 40px; min-height: 30px; }
+ol.steps > li::before { content: "☐"; position: absolute; left: 4px; top: 1px; font-size: 20pt; line-height: 1;
+                         color: #2a6fdb; font-family: "Apple Symbols", "Segoe UI Symbol", sans-serif; }
+kbd { display: inline-block; border: 1.5px solid #1f2a44; border-bottom-width: 3px; border-radius: 6px; padding: 0 7px;
+       font-family: Menlo, Consolas, monospace; font-size: 11pt; background: #f6f7fb; line-height: 1.45; white-space: nowrap; }
+.val { font-family: Menlo, Consolas, monospace; font-weight: 700; background: #fff3d6; border-radius: 4px; padding: 0 5px; }
+.box { border: 2.5px solid #1f2a44; border-radius: 14px; padding: 9px 16px; margin: 10px 0; }
+.tip { border-color: #2a6fdb; background: #eef4ff; }
+.warn { border-color: #e07a5f; background: #fff1ec; }
+.good { border-color: #2e9e6b; background: #ecf8f1; }
+.box .lbl { font-family: "Arial Rounded MT Bold", Arial, sans-serif; font-size: 12pt; text-transform: uppercase;
+             letter-spacing: .04em; margin-bottom: 2px; }
+.tip .lbl { color: #2a6fdb; } .warn .lbl { color: #c4513a; } .good .lbl { color: #2e9e6b; }
+.icon { width: 26px; height: 26px; vertical-align: -7px; background: #fff; border: 1.5px solid #1f2a44; border-radius: 6px; padding: 2px; }
+.cols { display: flex; gap: 22px; align-items: flex-start; }
+.cols > * { flex: 1; }
+.small { font-size: 11pt; }
+.muted { color: #4a5672; }
+/* cover */
+.cover-top { display: flex; align-items: center; gap: 10px; }
+.badge { display: inline-block; background: #ffd166; border-radius: 999px; padding: 3px 14px; font-weight: 700; font-size: 11pt; margin-right: 6px; }
+.needs { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 22px; margin-top: 10px; }
+.needs div { border-left: 5px solid #ffd166; padding-left: 10px; }
+.words dt { font-weight: 700; margin-top: 7px; }
+.words dd { margin: 0 0 0 0; }
+/* dot map */
+table.map { width: 100%; border-collapse: collapse; }
+table.map td { border-bottom: 1.5px solid #d9dee8; padding: 6px 8px; vertical-align: middle; }
+.fcell { width: 140px; white-space: nowrap; }
+.fcell svg { vertical-align: middle; }
+.fnum { display: inline-block; font-family: "Arial Rounded MT Bold", Arial; font-size: 26pt; vertical-align: middle; margin-left: 10px; }
+.opp { width: 130px; color: #4a5672; }
+.moves { font-size: 12pt; line-height: 1.5; columns: 2; column-gap: 18px; }
+/* order */
+.order { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px 14px; margin-top: 16px; }
+.ostep { border: 2.5px solid #1f2a44; border-radius: 14px; padding: 10px 12px 12px; text-align: center; position: relative; }
+.obadge { position: absolute; top: -12px; left: -12px; width: 32px; height: 32px; border-radius: 50%; background: #2a6fdb;
+           color: #fff; font-weight: 700; display: flex; align-items: center; justify-content: center; font-size: 14pt; }
+.oface { font-family: "Arial Rounded MT Bold", Arial; font-size: 15pt; margin-top: 4px; }
+.oturn { font-size: 20pt; font-weight: 700; color: #e07a5f; line-height: 1.1; }
+.odesc { font-size: 10.5pt; color: #4a5672; margin-top: 4px; }
+.checklist li { margin: 5px 0; }
+.lines div { border-bottom: 1.5px solid #b9c1d3; height: 26px; }
+a { color: #2a6fdb; }
+
+.blank { display: inline-block; border-bottom: 2px solid #1f2a44; height: 1.1em; vertical-align: -3px; margin: 0 3px; }
+table.sheet { width: 100%; border-collapse: collapse; margin: 6px 0; font-size: 12pt; }
+table.sheet th { text-align: left; font-size: 10pt; text-transform: uppercase; letter-spacing: .04em; color: #4a5672;
+                 border-bottom: 2px solid #1f2a44; padding: 4px 6px; }
+table.sheet td { border-bottom: 1.5px solid #d9dee8; padding: 0 6px; height: 31px; }
+table.sheet td.w { border-left: 1.5px solid #d9dee8; }
+table.sheet td.unit { color: #7a849c; font-size: 10.5pt; width: 30px; }
+.mrow { display: flex; gap: 14px; justify-content: space-between; margin: 6px 0; }
+.mcard { flex: 1; border: 2px solid #d9dee8; border-radius: 12px; padding: 8px; text-align: center; line-height: 1.3; }
+.mcard .small { font-size: 10.5pt; }
+.letter { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; border-radius: 50%;
+          border: 2px solid currentColor; font-weight: 700; font-size: 11pt; margin-right: 4px; background: #fff; }
+.math { font-size: 12.5pt; }
+.math tr td { padding: 5px 4px; vertical-align: middle; }
+.math .eq { font-family: Menlo, monospace; font-size: 11pt; color: #4a5672; }
+.rules li { margin: 3px 0; }
+</style></head><body>
+
+<!-- PAGE 1: COVER / MISSION -->
+<section class="page">
+  <div><span class="badge">Project 3</span><span class="badge" style="background:#cfe3ff">TinkerCad</span><span class="badge" style="background:#d6f2e2">2 class periods</span></div>
+  <h1 style="margin-top:16px">Rocket Launch:<br>Design Mission 🚀</h1>
+  <p class="sub">Measure a real rocket launcher, design a rocket that fits it, 3D print it, and launch it!</p>
+
+  <h3>Your mission</h3>
+  <p>Our stomp launcher shoots a puff of air up a <b>launch tube</b>. A rocket slides down over the tube, and when
+  you stomp, the air blasts it into the sky. You’ll design your own rocket in TinkerCad that fits <b>our</b> launcher.
+  Nobody will tell you the sizes. <b>You’ll measure them yourself</b>, like a real engineer!</p>
+
+  <div class="box tip"><div class="lbl">Our launcher</div>
+  We use a <b>stomp rocket launcher</b>: you stomp on an air pad, and a hose carries the air to an upright
+  <b>launch tube</b>. The foam rockets it comes with slide down <b>over</b> that tube. Ours is
+  <a href="https://www.amazon.com/dp/B08RHP7XZ1">this one on Amazon</a>, but any stomp launcher with a launch tube works.
+  Just measure <b>your</b> tube!</div>
+  <div class="box good"><div class="lbl">Mission rules: your rocket must…</div>
+  <ol class="rules" style="margin:4px 0 0 20px; padding:0">
+    <li><b>Slide onto the launch tube easily</b>, but not wobble around loosely.</li>
+    <li>Have a <b>closed top</b>, so the air pushes the rocket up instead of shooting out the top.</li>
+    <li>Have <b>fins</b>, so it flies straight.</li>
+    <li>Be <b>light</b>: thin walls, no solid chunks. Lighter rockets fly higher!</li>
+    <li>Be named <b>Rocket – First Name Last Initial</b> in TinkerCad, so your teacher can find it and print it.</li>
+  </ol></div>
+
+  <h3>Words to know</h3>
+  <dl class="words">
+    <dt>Calipers</dt><dd>A tool that measures small things very exactly, down to a hundredth of a millimeter.</dd>
+    <dt>Diameter</dt><dd>How wide a circle is, measured straight across through the middle.</dd>
+    <dt>Gap (clearance)</dt><dd>A little extra space, so one part can slide over another without getting stuck.</dd>
+  </dl>
+  <div class="footer"><span>🚀 Rocket Launch: Design Mission</span><span>Page 1 of 7</span></div>
+</section>
+
+<!-- PAGE 2: CALIPERS -->
+<section class="page">
+  <h2>📏 Meet the calipers</h2>
+  <div class="figure" style="text-align:center"><svg width="560" viewBox="0 0 640 250" style="max-width:100%"><rect x="60" y="95" width="500" height="24" rx="3" fill="#e9edf5" stroke="#1f2a44" stroke-width="2.5"/><line x1="100" y1="95" x2="100" y2="108" stroke="#1f2a44" stroke-width="1"/><line x1="110" y1="95" x2="110" y2="103" stroke="#1f2a44" stroke-width="1"/><line x1="120" y1="95" x2="120" y2="103" stroke="#1f2a44" stroke-width="1"/><line x1="130" y1="95" x2="130" y2="103" stroke="#1f2a44" stroke-width="1"/><line x1="140" y1="95" x2="140" y2="103" stroke="#1f2a44" stroke-width="1"/><line x1="150" y1="95" x2="150" y2="108" stroke="#1f2a44" stroke-width="1"/><line x1="160" y1="95" x2="160" y2="103" stroke="#1f2a44" stroke-width="1"/><line x1="170" y1="95" x2="170" y2="103" stroke="#1f2a44" stroke-width="1"/><line x1="180" y1="95" x2="180" y2="103" stroke="#1f2a44" stroke-width="1"/><line x1="190" y1="95" x2="190" y2="103" stroke="#1f2a44" stroke-width="1"/><line x1="200" y1="95" x2="200" y2="108" stroke="#1f2a44" stroke-width="1"/><line x1="210" y1="95" x2="210" y2="103" stroke="#1f2a44" stroke-width="1"/><line x1="220" y1="95" x2="220" y2="103" stroke="#1f2a44" stroke-width="1"/><line x1="230" y1="95" x2="230" y2="103" stroke="#1f2a44" stroke-width="1"/><line x1="240" y1="95" x2="240" y2="103" stroke="#1f2a44" stroke-width="1"/><line x1="250" y1="95" x2="250" y2="108" stroke="#1f2a44" stroke-width="1"/><line x1="260" y1="95" x2="260" y2="103" stroke="#1f2a44" stroke-width="1"/><line x1="270" y1="95" x2="270" y2="103" stroke="#1f2a44" stroke-width="1"/><line x1="280" y1="95" x2="280" y2="103" stroke="#1f2a44" stroke-width="1"/><line x1="290" y1="95" x2="290" y2="103" stroke="#1f2a44" stroke-width="1"/><line x1="300" y1="95" x2="300" y2="108" stroke="#1f2a44" stroke-width="1"/><line x1="310" y1="95" x2="310" y2="103" stroke="#1f2a44" stroke-width="1"/><line x1="320" y1="95" x2="320" y2="103" stroke="#1f2a44" stroke-width="1"/><line x1="330" y1="95" x2="330" y2="103" stroke="#1f2a44" stroke-width="1"/><line x1="340" y1="95" x2="340" y2="103" stroke="#1f2a44" stroke-width="1"/><line x1="350" y1="95" x2="350" y2="108" stroke="#1f2a44" stroke-width="1"/><line x1="360" y1="95" x2="360" y2="103" stroke="#1f2a44" stroke-width="1"/><line x1="370" y1="95" x2="370" y2="103" stroke="#1f2a44" stroke-width="1"/><line x1="380" y1="95" x2="380" y2="103" stroke="#1f2a44" stroke-width="1"/><line x1="390" y1="95" x2="390" y2="103" stroke="#1f2a44" stroke-width="1"/><line x1="400" y1="95" x2="400" y2="108" stroke="#1f2a44" stroke-width="1"/><line x1="410" y1="95" x2="410" y2="103" stroke="#1f2a44" stroke-width="1"/><line x1="420" y1="95" x2="420" y2="103" stroke="#1f2a44" stroke-width="1"/><line x1="430" y1="95" x2="430" y2="103" stroke="#1f2a44" stroke-width="1"/><line x1="440" y1="95" x2="440" y2="103" stroke="#1f2a44" stroke-width="1"/><line x1="450" y1="95" x2="450" y2="108" stroke="#1f2a44" stroke-width="1"/><line x1="460" y1="95" x2="460" y2="103" stroke="#1f2a44" stroke-width="1"/><line x1="470" y1="95" x2="470" y2="103" stroke="#1f2a44" stroke-width="1"/><line x1="480" y1="95" x2="480" y2="103" stroke="#1f2a44" stroke-width="1"/><line x1="490" y1="95" x2="490" y2="103" stroke="#1f2a44" stroke-width="1"/><line x1="500" y1="95" x2="500" y2="108" stroke="#1f2a44" stroke-width="1"/><line x1="510" y1="95" x2="510" y2="103" stroke="#1f2a44" stroke-width="1"/><line x1="520" y1="95" x2="520" y2="103" stroke="#1f2a44" stroke-width="1"/><line x1="530" y1="95" x2="530" y2="103" stroke="#1f2a44" stroke-width="1"/><line x1="540" y1="95" x2="540" y2="103" stroke="#1f2a44" stroke-width="1"/><line x1="550" y1="95" x2="550" y2="108" stroke="#1f2a44" stroke-width="1"/><line x1="560" y1="95" x2="560" y2="103" stroke="#1f2a44" stroke-width="1"/><rect x="560" y="104" width="60" height="5" fill="#e9edf5" stroke="#1f2a44" stroke-width="2"/><path d="M60,95 L60,200 L95,232 L95,119 Z" fill="#e9edf5" stroke="#1f2a44" stroke-width="2.5" stroke-linejoin="round"/><path d="M78,95 L78,48 L95,40 L95,95 Z" fill="#e9edf5" stroke="#1f2a44" stroke-width="2.5" stroke-linejoin="round"/><path d="M170,119 L170,232 L205,200 L205,119 Z" fill="#e9edf5" stroke="#1f2a44" stroke-width="2.5" stroke-linejoin="round"/><path d="M170,95 L170,40 L187,48 L187,95 Z" fill="#e9edf5" stroke="#1f2a44" stroke-width="2.5" stroke-linejoin="round"/><rect x="170" y="78" width="170" height="62" rx="8" fill="#ffd166" stroke="#1f2a44" stroke-width="2.5"/><rect x="215" y="88" width="80" height="30" rx="4" fill="#dfe8d0" stroke="#1f2a44" stroke-width="2"/><text x="290" y="110" font-size="19" font-weight="700" fill="#1f2a44" text-anchor="end" font-family="Menlo, monospace">21.45</text><circle cx="190" cy="125" r="7" fill="#fff" stroke="#1f2a44" stroke-width="2"/><circle cx="310" cy="103" r="8" fill="#fff" stroke="#1f2a44" stroke-width="2"/><circle cx="270" cy="148" r="9" fill="#cfd5e2" stroke="#1f2a44" stroke-width="2"/><rect x="250" y="70" width="12" height="8" fill="#cfd5e2" stroke="#1f2a44" stroke-width="1.5"/><line x1="130" y1="205" x2="230" y2="238" stroke="#c4513a" stroke-width="1.5"/><circle cx="130" cy="205" r="3" fill="#c4513a"/><text x="235" y="242" font-size="13" font-weight="700" fill="#c4513a" text-anchor="start" font-family="Avenir Next, Arial">Outside jaws: measure the OUTSIDE of things</text><line x1="95" y1="205" x2="170" y2="205" stroke="#c4513a" stroke-width="2" stroke-dasharray="4 3"/><line x1="132" y1="45" x2="132" y2="16" stroke="#2a6fdb" stroke-width="1.5"/><circle cx="132" cy="45" r="3" fill="#2a6fdb"/><text x="132" y="20" font-size="13" font-weight="700" fill="#2a6fdb" text-anchor="middle" font-family="Avenir Next, Arial">Inside jaws: measure INSIDE holes</text><line x1="95" y1="45" x2="170" y2="45" stroke="#2a6fdb" stroke-width="2" stroke-dasharray="4 3"/><line x1="600" y1="106" x2="600" y2="150" stroke="#2e9e6b" stroke-width="1.5"/><circle cx="600" cy="106" r="3" fill="#2e9e6b"/><text x="600" y="154" font-size="13" font-weight="700" fill="#2e9e6b" text-anchor="middle" font-family="Avenir Next, Arial">Depth rod:</text><text x="600" y="169" font-size="13" font-weight="700" fill="#2e9e6b" text-anchor="middle" font-family="Avenir Next, Arial">how DEEP</text><text x="600" y="184" font-size="13" font-weight="700" fill="#2e9e6b" text-anchor="middle" font-family="Avenir Next, Arial">a hole is</text><line x1="255" y1="103" x2="390" y2="45" stroke="#1f2a44" stroke-width="1.5"/><circle cx="255" cy="103" r="3" fill="#1f2a44"/><text x="395" y="49" font-size="13" font-weight="700" fill="#1f2a44" text-anchor="start" font-family="Avenir Next, Arial">Screen (mm)</text><line x1="310" y1="103" x2="400" y2="72" stroke="#1f2a44" stroke-width="1.5"/><circle cx="310" cy="103" r="3" fill="#1f2a44"/><text x="405" y="76" font-size="13" font-weight="700" fill="#1f2a44" text-anchor="start" font-family="Avenir Next, Arial">ZERO button</text><line x1="256" y1="74" x2="300" y2="30" stroke="#7a849c" stroke-width="1.5"/><circle cx="256" cy="74" r="3" fill="#7a849c"/><text x="305" y="34" font-size="13" font-weight="700" fill="#7a849c" text-anchor="start" font-family="Avenir Next, Arial">Lock screw</text><line x1="270" y1="155" x2="360" y2="185" stroke="#7a849c" stroke-width="1.5"/><circle cx="270" cy="155" r="3" fill="#7a849c"/><text x="365" y="189" font-size="13" font-weight="700" fill="#7a849c" text-anchor="start" font-family="Avenir Next, Arial">Thumb wheel: roll to slide</text></svg></div>
+  <h3>How to use them</h3>
+  <ol class="steps">
+    <li>Press the <b>on</b> button. Make sure the screen says <b>mm</b> (not inches). If it doesn’t, press the <b>mm/in</b> button.</li>
+    <li>Close the jaws all the way, then press <b>ZERO</b>. The screen should say <span class="val">0.00</span>.</li>
+    <li>Open the jaws, put the object in, and close them <b>gently</b>. Don’t squeeze! Squeezing gives the wrong number.</li>
+    <li>Read the screen. Write down <b>all</b> the numbers, like <span class="val">21.45</span> mm.</li>
+  </ol>
+  <h3>Three ways to measure</h3>
+  <div class="mrow"><div class="mcard"><svg width="150" height="100" viewBox="0 0 150 100"><rect x="45" y="30" width="60" height="60" fill="#f4a259" stroke="#1f2a44" stroke-width="2"/><path d="M20,10 L45,10 L45,60 L20,60 Z" fill="#e9edf5" stroke="#c4513a" stroke-width="2.5"/><path d="M105,10 L130,10 L130,60 L105,60 Z" fill="#e9edf5" stroke="#c4513a" stroke-width="2.5"/></svg><b>Outside</b><div class="small muted">Squeeze the big bottom jaws gently around it.</div></div><div class="mcard"><svg width="150" height="100" viewBox="0 0 150 100"><circle cx="75" cy="55" r="38" fill="#f4a259" stroke="#1f2a44" stroke-width="2"/><circle cx="75" cy="55" r="26" fill="#fff" stroke="#1f2a44" stroke-width="2"/><path d="M49,55 L49,8 L62,8" fill="none" stroke="#2a6fdb" stroke-width="4"/><path d="M101,55 L101,8 L88,8" fill="none" stroke="#2a6fdb" stroke-width="4"/></svg><b>Inside</b><div class="small muted">Put the small top jaws in the hole, then open them until they touch.</div></div><div class="mcard"><svg width="150" height="100" viewBox="0 0 150 100"><path d="M30,25 L30,95 L120,95 L120,25 L95,25 L95,80 L55,80 L55,25 Z" fill="#f4a259" stroke="#1f2a44" stroke-width="2"/><rect x="20" y="14" width="110" height="11" fill="#e9edf5" stroke="#1f2a44" stroke-width="2"/><rect x="72" y="25" width="5" height="55" fill="#2e9e6b" stroke="#1f2a44" stroke-width="1"/></svg><b>Depth</b><div class="small muted">Rest the end on the edge and slide the rod down to the bottom.</div></div></div>
+  <div class="box tip"><div class="lbl">Practice first</div>Measure these, then check with a neighbor. Did you get the same answer?</div>
+  <table class="sheet">
+    <tr><th>Object</th><th>What to measure</th><th>My number</th><th>Neighbor’s number</th></tr>
+    <tr><td>Pencil</td><td>Outside diameter</td><td class="w"></td><td class="w"></td></tr>
+    <tr><td>A coin</td><td>Outside diameter</td><td class="w"></td><td class="w"></td></tr>
+    <tr><td>A cup or bottle cap</td><td>Inside diameter</td><td class="w"></td><td class="w"></td></tr>
+  </table>
+  <div class="footer"><span>🚀 Rocket Launch: Design Mission</span><span>Page 2 of 7</span></div>
+</section>
+
+<!-- PAGE 3: MEASURE THE LAUNCHER -->
+<section class="page">
+  <h2>🔍 Measure the launcher</h2>
+  <p>Now measure the real thing. Engineers <b>measure three times</b> in different spots, because tubes aren’t always
+  perfectly round. Then they find the <b>average</b>.</p>
+
+  <h3>The launch tube</h3>
+  <table class="sheet">
+    <tr><th>What to measure</th><th>Try 1</th><th>Try 2</th><th>Try 3</th><th>Average</th><th></th></tr>
+    <tr><td><span class="letter" style="color:#7a849c">A</span><b>Outside diameter</b> of the launch tube</td><td class="w"></td><td class="w"></td><td class="w"></td><td class="w"></td><td class="unit">mm</td></tr>
+    <tr><td>How far a rocket slides down onto the tube</td><td class="w"></td><td class="w"></td><td class="w"></td><td class="w"></td><td class="unit">mm</td></tr>
+  </table>
+  <p class="small muted">To find the average: add the three numbers, then divide by 3. Example: (21.4 + 21.6 + 21.5) ÷ 3 = 21.5</p>
+
+  <h3>A foam rocket (it already works, so let’s learn from it!)</h3>
+  <table class="sheet">
+    <tr><th>What to measure</th><th>My number</th><th></th></tr>
+    <tr><td><b>Inside diameter</b> of its hole (use the inside jaws)</td><td class="w"></td><td class="unit">mm</td></tr>
+    <tr><td><b>Depth</b> of its hole (use the depth rod)</td><td class="w"></td><td class="unit">mm</td></tr>
+    <tr><td><b>Total length</b> of the whole rocket</td><td class="w"></td><td class="unit">mm</td></tr>
+    <tr><td>How many <b>fins</b> does it have?</td><td class="w"></td><td class="unit"></td></tr>
+  </table>
+
+  <h3>🤔 Think like an engineer</h3>
+  <p><b>Is the foam rocket’s hole bigger or smaller than the launch tube? By how much?</b>
+  <span class="blank" style="width:60px"></span> mm. That difference is its <b>gap</b>.</p>
+  <p><b>Why do you think the hole isn’t exactly the same size as the tube?</b></p>
+  <div class="lines"><div></div><div></div></div>
+  <div class="footer"><span>🚀 Rocket Launch: Design Mission</span><span>Page 3 of 7</span></div>
+</section>
+
+<!-- PAGE 4: PLAN -->
+<section class="page">
+  <h2>✏️ Plan your rocket</h2>
+  <p>Here’s your rocket cut in half, sitting on the launch tube. Each letter is a size you need to figure out.</p>
+  <div class="cols">
+    <div style="flex:1.1"><svg width="430" viewBox="0 0 430 520" style="max-width:100%"><rect x="128" y="250" width="84" height="270" fill="#e9edf5" stroke="#7a849c" stroke-width="2" stroke-dasharray="6 4"/><path d="M110,470 L110,186 L230,186 L230,470 L218,470 L218,210 L122,210 L122,470 Z" fill="#f4a259" stroke="#1f2a44" stroke-width="2.5" stroke-linejoin="round"/><path d="M110,186 Q116,100 170,60 Q224,100 230,186 Z" fill="#ffd166" stroke="#1f2a44" stroke-width="2.5" stroke-linejoin="round"/><path d="M110,470 L55,470 L55,425 L110,360 Z" fill="#e07a5f" stroke="#1f2a44" stroke-width="2.5" stroke-linejoin="round"/><path d="M230,470 L285,470 L285,425 L230,360 Z" fill="#e07a5f" stroke="#1f2a44" stroke-width="2.5" stroke-linejoin="round"/><text x="170" y="330" font-size="16" fill="#7a849c" font-weight="700" text-anchor="middle" font-family="Avenir Next, Arial">launch tube</text><text x="170" y="230" font-size="16" fill="#1f2a44" text-anchor="middle" font-family="Avenir Next, Arial">hole</text><line x1="128" y1="400" x2="212" y2="400" stroke="#7a849c" stroke-width="2"/><line x1="128" y1="394" x2="128" y2="406" stroke="#7a849c" stroke-width="2"/><line x1="212" y1="394" x2="212" y2="406" stroke="#7a849c" stroke-width="2"/><circle cx="170.0" cy="400" r="11" fill="#fff" stroke="#7a849c" stroke-width="2"/><text x="170.0" y="405" font-size="14" font-weight="700" fill="#7a849c" text-anchor="middle" font-family="Avenir Next, Arial">A</text><line x1="122" y1="290" x2="218" y2="290" stroke="#2a6fdb" stroke-width="2"/><line x1="122" y1="284" x2="122" y2="296" stroke="#2a6fdb" stroke-width="2"/><line x1="218" y1="284" x2="218" y2="296" stroke="#2a6fdb" stroke-width="2"/><circle cx="170.0" cy="290" r="11" fill="#fff" stroke="#2a6fdb" stroke-width="2"/><text x="170.0" y="295" font-size="14" font-weight="700" fill="#2a6fdb" text-anchor="middle" font-family="Avenir Next, Arial">B</text><line x1="110" y1="498" x2="230" y2="498" stroke="#c4513a" stroke-width="2"/><line x1="110" y1="492" x2="110" y2="504" stroke="#c4513a" stroke-width="2"/><line x1="230" y1="492" x2="230" y2="504" stroke="#c4513a" stroke-width="2"/><circle cx="170.0" cy="498" r="11" fill="#fff" stroke="#c4513a" stroke-width="2"/><text x="170.0" y="503" font-size="14" font-weight="700" fill="#c4513a" text-anchor="middle" font-family="Avenir Next, Arial">C</text><line x1="315" y1="470" x2="315" y2="210" stroke="#2a6fdb" stroke-width="2"/><line x1="309" y1="470" x2="321" y2="470" stroke="#2a6fdb" stroke-width="2"/><line x1="309" y1="210" x2="321" y2="210" stroke="#2a6fdb" stroke-width="2"/><circle cx="315" cy="340.0" r="11" fill="#fff" stroke="#2a6fdb" stroke-width="2"/><text x="315" y="345.0" font-size="14" font-weight="700" fill="#2a6fdb" text-anchor="middle" font-family="Avenir Next, Arial">D</text><line x1="350" y1="470" x2="350" y2="186" stroke="#1f2a44" stroke-width="2"/><line x1="344" y1="470" x2="356" y2="470" stroke="#1f2a44" stroke-width="2"/><line x1="344" y1="186" x2="356" y2="186" stroke="#1f2a44" stroke-width="2"/><circle cx="350" cy="328.0" r="11" fill="#fff" stroke="#1f2a44" stroke-width="2"/><text x="350" y="333.0" font-size="14" font-weight="700" fill="#1f2a44" text-anchor="middle" font-family="Avenir Next, Arial">E</text><line x1="350" y1="186" x2="350" y2="60" stroke="#b8860b" stroke-width="2"/><line x1="344" y1="186" x2="356" y2="186" stroke="#b8860b" stroke-width="2"/><line x1="344" y1="60" x2="356" y2="60" stroke="#b8860b" stroke-width="2"/><circle cx="350" cy="123.0" r="11" fill="#fff" stroke="#b8860b" stroke-width="2"/><text x="350" y="128.0" font-size="14" font-weight="700" fill="#b8860b" text-anchor="middle" font-family="Avenir Next, Arial">F</text><line x1="215.0" y1="330" x2="260" y2="345" stroke="#2a6fdb" stroke-width="1.5"/><circle cx="215.0" cy="330" r="3" fill="#2a6fdb"/><text x="265" y="349" font-size="13" font-weight="700" fill="#2a6fdb" text-anchor="start" font-family="Avenir Next, Arial"></text><text x="264" y="351" font-size="17" font-weight="700" fill="#2a6fdb" font-family="Avenir Next, Arial">gap</text><text x="4" y="256" font-size="17" font-weight="700" fill="#c4513a" font-family="Avenir Next, Arial">wall</text><path d="M4,262 L56,262 L116.0,260" fill="none" stroke="#c4513a" stroke-width="1.5"/><circle cx="116.0" cy="260" r="3.5" fill="#c4513a"/><text x="4" y="184" font-size="17" font-weight="700" fill="#1f2a44" font-family="Avenir Next, Arial">cap</text><path d="M4,190 L56,190 L140,198.0" fill="none" stroke="#1f2a44" stroke-width="1.5"/><circle cx="140" cy="198.0" r="3.5" fill="#1f2a44"/><text x="4" y="96" font-size="17" font-weight="700" fill="#b8860b" font-family="Avenir Next, Arial">nose</text><text x="4" y="114" font-size="17" font-weight="700" fill="#b8860b" font-family="Avenir Next, Arial">cone</text><path d="M4,120 L56,120 L145,130" fill="none" stroke="#b8860b" stroke-width="1.5"/><circle cx="145" cy="130" r="3.5" fill="#b8860b"/><text x="4" y="394" font-size="17" font-weight="700" fill="#c4513a" font-family="Avenir Next, Arial">fin</text><path d="M4,400 L40,400 L80,440" fill="none" stroke="#c4513a" stroke-width="1.5"/><circle cx="80" cy="440" r="3.5" fill="#c4513a"/></svg></div>
+    <div style="flex:1.05">
+      <table class="math">
+        <tr><td><span class="letter" style="color:#7a849c">A</span></td><td><b>Launch tube</b><br><span class="eq">from page 3 (average)</span></td><td><span class="blank" style="width:55px"></span></td></tr>
+        <tr><td><span class="letter" style="color:#2a6fdb">B</span></td><td><b>Hole diameter</b><br><span class="eq">A + gap (try 0.8)</span></td><td><span class="blank" style="width:55px"></span></td></tr>
+        <tr><td><span class="letter" style="color:#c4513a">C</span></td><td><b>Body diameter</b><br><span class="eq">B + 2 walls (try 1.5 each)</span></td><td><span class="blank" style="width:55px"></span></td></tr>
+        <tr><td><span class="letter" style="color:#2a6fdb">D</span></td><td><b>Hole depth</b><br><span class="eq">look at the foam rocket!</span></td><td><span class="blank" style="width:55px"></span></td></tr>
+        <tr><td><span class="letter" style="color:#1f2a44">E</span></td><td><b>Body height</b><br><span class="eq">D + cap (at least 2)</span></td><td><span class="blank" style="width:55px"></span></td></tr>
+        <tr><td><span class="letter" style="color:#b8860b">F</span></td><td><b>Nose cone height</b><br><span class="eq">your choice!</span></td><td><span class="blank" style="width:55px"></span></td></tr>
+      </table>
+      <div class="box tip" style="font-size:11.5pt"><div class="lbl">Why add a gap?</div>
+      If the hole is <b>exactly</b> the size of the tube, the rocket gets stuck. 3D printed holes also come out a tiny
+      bit smaller than designed. A gap of about <span class="val">0.8</span> mm is a good start.</div>
+      <div class="box warn" style="font-size:11.5pt"><div class="lbl">Why add 2 walls?</div>
+      The wall goes all the way around, so it’s on <b>both</b> sides of the hole when you measure straight across.</div>
+    </div>
+  </div>
+  <div class="box good"><div class="lbl">Check your plan</div>
+  B is bigger than A ☐ &nbsp; C is about 3 mm bigger than B ☐ &nbsp; E is bigger than D ☐ &nbsp; E + F is under 150 mm ☐</div>
+  <div class="footer"><span>🚀 Rocket Launch: Design Mission</span><span>Page 4 of 7</span></div>
+</section>
+
+<!-- PAGE 5: BUILD BODY -->
+<section class="page">
+  <h2><span class="num">1</span>Get set up</h2>
+  <ol class="steps">
+    <li>Open TinkerCad and click <b>Create → 3D Design</b>.</li>
+    <li><b>Name it right away!</b> Click the silly random name at the top left, type <b>Rocket – First Name Last Initial</b>, and press <kbd>Enter</kbd>.</li>
+  </ol>
+  <div class="box tip"><div class="lbl">Typing exact sizes</div>Click a shape, hover over a white square, click the number that pops up,
+  and type your size from page 4 (decimals like <span class="val">23.8</span> are fine!). Press <kbd>Enter</kbd>.</div>
+
+  <h2 style="margin-top:14px"><span class="num">2</span>The body</h2>
+  <ol class="steps">
+    <li>Drag a <b>Cylinder</b> onto the workplane.</li>
+    <li>Make it <span class="letter" style="color:#c4513a">C</span> wide, <span class="letter" style="color:#c4513a">C</span> long, and <span class="letter" style="color:#1f2a44">E</span> tall.</li>
+  </ol>
+
+  <h2 style="margin-top:14px"><span class="num">3</span>The hole</h2>
+  <ol class="steps">
+    <li>Drag another <b>Cylinder</b> next to the body. Click <b>Hole</b> <svg class="icon" viewBox="0 0 40 40"><circle cx="20" cy="20" r="14" fill="none" stroke="#1f2a44" stroke-width="3" stroke-dasharray="5 4"/></svg>.</li>
+    <li>Make it <span class="letter" style="color:#2a6fdb">B</span> wide, <span class="letter" style="color:#2a6fdb">B</span> long, and <span class="letter" style="color:#2a6fdb">D</span> tall. Leave it sitting on the workplane, so the hole opens at the bottom.</li>
+    <li>Select the hole <b>and</b> the body (hold <kbd>Shift</kbd> and click both). Click <b>Align</b> <svg class="icon" viewBox="0 0 40 40"><line x1="20" y1="3" x2="20" y2="37" stroke="#1f2a44" stroke-width="3"/><rect x="8" y="8" width="24" height="9" fill="none" stroke="#1f2a44" stroke-width="3"/><rect x="12" y="23" width="16" height="9" fill="none" stroke="#1f2a44" stroke-width="3"/></svg> and click the <b>two middle</b> dots
+      that line things up side to side. Don’t click the up-and-down row!</li>
+  </ol>
+
+  <h2 style="margin-top:14px"><span class="num">4</span>The nose cone</h2>
+  <ol class="steps">
+    <li>Drag a <b>Paraboloid</b> (rounded) or a <b>Cone</b> (pointy) onto the workplane. Which one do you think will fly better?</li>
+    <li>Make it <span class="letter" style="color:#c4513a">C</span> wide, <span class="letter" style="color:#c4513a">C</span> long, and <span class="letter" style="color:#b8860b">F</span> tall.</li>
+    <li>Grab the black cone on top and lift it to <span class="letter" style="color:#1f2a44">E</span>, so it sits right on top of the body.</li>
+    <li>Select the nose and the body, <b>Align</b> the two middle dots again.</li>
+  </ol>
+  <div class="box good"><div class="lbl">Check</div>Click the view cube’s <b>Home</b> button. You should see one smooth rocket shape, with the nose
+  sitting right on top of the body (not floating, not sunk in).</div>
+  <div class="footer"><span>🚀 Rocket Launch: Design Mission</span><span>Page 5 of 7</span></div>
+</section>
+
+<!-- PAGE 6: FINS + GROUP + SAVE -->
+<section class="page">
+  <h2><span class="num">5</span>The fins</h2>
+  <p>Here’s a trick: one long, thin box sticking out on <b>both</b> sides of the rocket makes <b>two</b> fins at once!</p>
+  <ol class="steps">
+    <li>Drag a <b>Box</b> onto the workplane. Make it <b><span class="letter" style="color:#c4513a">C</span> + 30</b> long, <span class="val">2</span> wide (that’s the fin thickness), and <span class="val">30</span> tall.</li>
+    <li>Select the box and the body, <b>Align</b> the two middle dots. Now it pokes out 15 mm on each side.</li>
+    <li>With just the box selected, press <kbd>Ctrl</kbd> + <kbd>D</kbd> (Duplicate). Grab the <b>curved arrow on the flat part, near
+      the bottom</b>, and turn the copy <b>90°</b>. Now you have 4 fins!</li>
+  </ol>
+  <div class="box tip"><div class="lbl">Engineer’s choice</div>Change the size of your fins, or try the <b>Wedge</b> shape
+  for slanted fins. Bigger fins fly straighter, but they’re heavier. What will you choose? Keep fins at least <span class="val">1.5</span> mm thick so they don’t snap.</div>
+
+  <h2 style="margin-top:14px"><span class="num">6</span>Group it</h2>
+  <ol class="steps">
+    <li>Press <kbd>Ctrl</kbd> + <kbd>A</kbd> to select everything, then click <b>Group</b> <svg class="icon" viewBox="0 0 40 40"><rect x="5" y="9" width="18" height="18" fill="none" stroke="#1f2a44" stroke-width="3"/><circle cx="26" cy="22" r="10" fill="none" stroke="#1f2a44" stroke-width="3"/></svg> (<kbd>Ctrl</kbd> + <kbd>G</kbd>).</li>
+    <li>Turn the view cube to look at the rocket <b>from underneath</b>. You should see the round hole. The hole also cleans the fins out of the inside!</li>
+  </ol>
+
+  <h2 style="margin-top:14px"><span class="num">7</span>Save it and hand it in 💾</h2>
+  <ol class="steps">
+    <li>Check the name at the top left says <b>Rocket – First Name Last Initial</b>.</li>
+    <li>TinkerCad saves by itself. To be sure, click the <b>TinkerCad logo</b> (top left) and find your rocket in your designs.</li>
+    <li>Write your sizes from page 4 somewhere safe. If your rocket doesn’t fit, you’ll need them to fix it!</li>
+    <li>Tell your teacher your rocket is ready to print. 🖨️</li>
+  </ol>
+  <div class="footer"><span>🚀 Rocket Launch: Design Mission</span><span>Page 6 of 7</span></div>
+</section>
+
+<!-- PAGE 7: LAUNCH DAY -->
+<section class="page">
+  <h2>🚀 Launch day!</h2>
+  <div class="box warn"><div class="lbl">Safety rules</div>
+  <ul style="margin:4px 0 0 18px; padding:0">
+    <li>Never aim the launcher at a person, an animal, or a window. Always point it up!</li>
+    <li>Only stomp when your teacher says “Go!” and everyone is standing back.</li>
+    <li>Wait for a rocket to land before you pick it up.</li>
+  </ul></div>
+
+  <h3>The fit test</h3>
+  <p>Slide your rocket onto the launch tube. How does it feel? Circle one:</p>
+  <p style="font-size:14pt; text-align:center; margin:8px 0">Too tight 😬 &nbsp;&nbsp;&nbsp; Just right 😃 &nbsp;&nbsp;&nbsp; Too loose 🙃</p>
+  <p class="small muted">Too tight? Make your gap bigger. Too loose? Make it smaller. Change <span class="letter" style="color:#2a6fdb">B</span> and <span class="letter" style="color:#c4513a">C</span>, then print again.</p>
+
+  <h3>Launch log</h3>
+  <table class="sheet">
+    <tr><th>Launch</th><th>How did it fly? (straight, wobbly, spinning…)</th><th>How high or far?</th></tr>
+    <tr><td>1</td><td class="w"></td><td class="w"></td></tr>
+    <tr><td>2</td><td class="w"></td><td class="w"></td></tr>
+    <tr><td>3</td><td class="w"></td><td class="w"></td></tr>
+  </table>
+
+  <h3>🤔 Think about it</h3>
+  <p><b>1. Did your rocket fit on the first try? What would you change about your gap?</b></p>
+  <div class="lines"><div></div><div></div></div>
+  <p style="margin-top:10px"><b>2. Look at the rocket that flew the highest in class. What was different about it?</b></p>
+  <div class="lines"><div></div><div></div></div>
+  <p style="margin-top:10px"><b>3. If you made Rocket 2.0, what would you change, and why?</b></p>
+  <div class="lines"><div></div><div></div></div>
+  <div class="footer"><span>🚀 Rocket Launch: Design Mission</span><span>Page 7 of 7</span></div>
+</section>
+
+</body></html>
