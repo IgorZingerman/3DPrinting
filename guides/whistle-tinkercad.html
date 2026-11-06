@@ -78,33 +78,32 @@ span.hole { color: #2a6fdb; font-weight: 700; border: 1.5px dashed #2a6fdb; bord
 .figure { text-align: center; margin: 6px 0; }
 .howto { display: flex; gap: 16px; align-items: center; }
 .step-intro { margin: 0 0 4px; }
+.words3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0 16px; margin: 6px 0; font-size: 11pt; line-height: 1.28; }
+.words3 > div > b { display: block; font-size: 12.5pt; margin-bottom: 2px; }
+.shots { display: flex; gap: 14px; margin: 8px 0; align-items: flex-start; }
+.shots .shot { flex: 1; min-width: 0; }
+.shot { margin: 0; border: 2px solid #d9dee8; border-radius: 12px; padding: 5px 5px 4px; background: #fff; }
+.shot figcaption { text-align: left; font-size: 10.5pt; line-height: 1.25; padding: 4px 4px 1px; color: #1f2a44; }
+.shot figcaption b.see { color: #2e9e6b; }
 </style></head><body>
 
 <!-- PAGE 1: COVER -->
 <section class="page">
   <div><span class="badge">Project 2</span><span class="badge" style="background:#cfe3ff">TinkerCad</span><span class="badge" style="background:#d6f2e2">About 45 min</span></div>
   <h1 style="margin-top:16px">Make a 3D Printed<br>Whistle in TinkerCad</h1>
-  <p class="sub">Design a whistle that really works, with a little “pea” rattling around inside it. It prints in one piece!</p>
+  <p class="sub">Design a whistle that really works, and blow it for real. It prints in one piece!</p>
 
-  <div class="howto">
-    <div style="flex:1.1"><svg width="256" viewBox="0 0 256 146" style="max-width:100%"><circle cx="153" cy="73" r="65" fill="#f4a259" stroke="#1f2a44" stroke-width="5"/><rect x="23" y="8" width="130" height="30" fill="#f4a259" stroke="#1f2a44" stroke-width="5"/><circle cx="228" cy="73" r="20" fill="#f4a259" stroke="#1f2a44" stroke-width="5"/><circle cx="153" cy="73" r="65" fill="#f4a259"/><rect x="23" y="8" width="130" height="30" fill="#f4a259"/><circle cx="228" cy="73" r="20" fill="#f4a259"/><circle cx="228" cy="73" r="10" fill="#fff" stroke="#1f2a44" stroke-width="2"/><circle cx="153" cy="73" r="55" fill="#cfe3ff" fill-opacity="0.75" stroke="#2a6fdb" stroke-width="2" stroke-dasharray="5 3"/><rect x="13" y="13" width="140" height="10" fill="#cfe3ff" fill-opacity="0.75" stroke="#2a6fdb" stroke-width="2" stroke-dasharray="5 3"/><rect x="128" y="3" width="25" height="20" fill="#fff" fill-opacity="0.85" stroke="#c4513a" stroke-width="2.5" stroke-dasharray="5 3"/><circle cx="153" cy="73" r="20" fill="#2e9e6b" stroke="#1f2a44" stroke-width="2"/><defs><marker id="ah" markerWidth="8" markerHeight="8" refX="5" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#2a6fdb"/></marker></defs><path d="M-27,18 L138,18" stroke="#2a6fdb" stroke-width="3" fill="none" marker-end="url(#ah)"/><path d="M148,16 q 10,-20 20,-30" stroke="#2a6fdb" stroke-width="2.5" fill="none" marker-end="url(#ah)"/><path d="M153,26 a 45,45 0 1 1 -20,-5" stroke="#2a6fdb" stroke-width="2.5" fill="none" stroke-dasharray="2 4" marker-end="url(#ah)"/></svg></div>
-    <div style="flex:1">
-      <h3 style="margin-top:0">How does a whistle work?</h3>
-      <p class="small">You blow air into a <b>thin tunnel</b>. The air shoots out and hits a <b>sharp edge</b> at the
-      sound window. The air splits and makes the air inside the round <b>chamber</b> spin and shake really fast.
-      Fast shaking air = <b>sound!</b> The <b>pea</b> bounces around inside and makes the trilling “prrrrr” sound.</p>
-    </div>
-  </div>
+<div class="shots"><figure class="shot" style="width:100%"><svg viewBox="0 0 800 520" style="width:100%;display:block;border-radius:10px"><image href="images/whistle/done-front.png" width="800" height="520"/><line x1="165.1" y1="287.9" x2="101.0" y2="60" stroke="#2a6fdb" stroke-width="3"/><circle cx="165.1" cy="287.9" r="6" fill="#2a6fdb"/><rect x="20" y="38" width="162.0" height="44" rx="10" fill="#fff" stroke="#2a6fdb" stroke-width="3"/><text x="101.0" y="69" font-size="26" font-weight="700" fill="#2a6fdb" text-anchor="middle" font-family="Avenir Next, Arial">Blow here!</text></svg><figcaption><b>This is what you’re making.</b> Blow into the thin slot.</figcaption></figure><figure class="shot" style="width:100%"><svg viewBox="0 0 800 520" style="width:100%;display:block;border-radius:10px"><image href="images/whistle/done-back.png" width="800" height="520"/><line x1="307.4" y1="309.8" x2="565.6" y2="60" stroke="#c4513a" stroke-width="3"/><circle cx="307.4" cy="309.8" r="6" fill="#c4513a"/><rect x="470" y="38" width="191.2" height="44" rx="10" fill="#fff" stroke="#c4513a" stroke-width="3"/><text x="565.6" y="69" font-size="26" font-weight="700" fill="#c4513a" text-anchor="middle" font-family="Avenir Next, Arial">Sound window</text></svg><figcaption><b>The back.</b> The window is where the sound comes out.</figcaption></figure></div>
+  <h3 style="margin-top:8px">How does a whistle work?</h3>
+  <p class="small">You blow air into a <b>thin tunnel</b>. The air shoots out and hits a <b>sharp edge</b> at the
+  sound window. The air splits and makes the air inside the round <b>chamber</b> spin and shake really fast.
+  Fast shaking air = <b>sound!</b></p>
 
   <h3>Here’s the plan</h3>
   <p>A whistle is a <b>round barrel</b> plus a <b>mouthpiece</b>, with the inside scooped out using <b>hole</b> shapes.
-  You’ll build it from 7 simple parts, then group them into one whistle.</p>
+  You’ll build it from 6 simple parts, then group them into one whistle.</p>
 
-  <dl class="words">
-    <dt><svg class="icon" viewBox="0 0 40 40"><circle cx="20" cy="20" r="14" fill="none" stroke="#1f2a44" stroke-width="3" stroke-dasharray="5 4"/></svg> Hole</dt><dd>A see-through shape. When you group it with a solid shape, it cuts that space away.</dd>
-    <dt><svg class="icon" viewBox="0 0 40 40"><rect x="5" y="9" width="18" height="18" fill="none" stroke="#1f2a44" stroke-width="3"/><circle cx="26" cy="22" r="10" fill="none" stroke="#1f2a44" stroke-width="3"/></svg> Group</dt><dd>Joins shapes into one. This is when the holes actually get cut.</dd>
-    <dt><svg class="icon" viewBox="0 0 40 40"><line x1="20" y1="3" x2="20" y2="37" stroke="#1f2a44" stroke-width="3"/><rect x="8" y="8" width="24" height="9" fill="none" stroke="#1f2a44" stroke-width="3"/><rect x="12" y="23" width="16" height="9" fill="none" stroke="#1f2a44" stroke-width="3"/></svg> Align</dt><dd>Lines up the edges or centers of shapes so they fit together perfectly.</dd>
-  </dl>
+  <div class="words3"><div><b><svg class="icon" viewBox="0 0 40 40"><circle cx="20" cy="20" r="14" fill="none" stroke="#1f2a44" stroke-width="3" stroke-dasharray="5 4"/></svg> Hole</b>A see-through shape. When you group it with a solid shape, it cuts that space away.</div><div><b><svg class="icon" viewBox="0 0 40 40"><rect x="5" y="9" width="18" height="18" fill="none" stroke="#1f2a44" stroke-width="3"/><circle cx="26" cy="22" r="10" fill="none" stroke="#1f2a44" stroke-width="3"/></svg> Group</b>Joins shapes into one. This is when the holes actually get cut.</div><div><b><svg class="icon" viewBox="0 0 40 40"><line x1="20" y1="3" x2="20" y2="37" stroke="#1f2a44" stroke-width="3"/><rect x="8" y="8" width="24" height="9" fill="none" stroke="#1f2a44" stroke-width="3"/><rect x="12" y="23" width="16" height="9" fill="none" stroke="#1f2a44" stroke-width="3"/></svg> Align</b>Lines up the edges or centers of shapes so they fit together perfectly.</div></div>
 
   <div class="box warn"><div class="lbl">Name your design!</div>
   Your teacher downloads everyone’s whistles from TinkerCad to print them. Name yours
@@ -119,14 +118,18 @@ span.hole { color: #2a6fdb; font-weight: 700; border: 1.5px dashed #2a6fdb; bord
   <h2>🗺️ The Parts Map</h2>
   <p class="step-intro">This is your whistle seen from the <b>top</b>. Solid parts are orange. <span class="hole">Holes</span> are blue
   and dashed (the sound window is red so you can spot it).</p>
-  <div class="figure"><svg width="453.6" viewBox="0 0 454 235" style="max-width:100%"><circle cx="185.8" cy="114.6" r="80.6" fill="#f4a259" stroke="#1f2a44" stroke-width="5"/><rect x="24.6" y="34.0" width="161.2" height="37.2" fill="#f4a259" stroke="#1f2a44" stroke-width="5"/><circle cx="278.8" cy="114.6" r="24.8" fill="#f4a259" stroke="#1f2a44" stroke-width="5"/><circle cx="185.8" cy="114.6" r="80.6" fill="#f4a259"/><rect x="24.6" y="34.0" width="161.2" height="37.2" fill="#f4a259"/><circle cx="278.8" cy="114.6" r="24.8" fill="#f4a259"/><circle cx="278.8" cy="114.6" r="12.4" fill="#fff" stroke="#1f2a44" stroke-width="2"/><circle cx="185.8" cy="114.6" r="68.2" fill="#cfe3ff" fill-opacity="0.75" stroke="#2a6fdb" stroke-width="2" stroke-dasharray="5 3"/><rect x="12.2" y="40.2" width="173.6" height="12.4" fill="#cfe3ff" fill-opacity="0.75" stroke="#2a6fdb" stroke-width="2" stroke-dasharray="5 3"/><rect x="154.8" y="27.8" width="31.0" height="24.8" fill="#fff" fill-opacity="0.85" stroke="#c4513a" stroke-width="2.5" stroke-dasharray="5 3"/><circle cx="185.8" cy="114.6" r="24.8" fill="#2e9e6b" stroke="#1f2a44" stroke-width="2"/><line x1="74" y1="40" x2="37" y2="14" stroke="#1f2a44" stroke-width="1.5"/><circle cx="74" cy="40" r="3" fill="#1f2a44"/><text x="41" y="18" font-size="12.5" font-weight="700" fill="#1f2a44" text-anchor="start" font-family="Avenir Next, Arial">② Mouthpiece</text><line x1="170" y1="31" x2="184" y2="14" stroke="#c4513a" stroke-width="1.5"/><circle cx="170" cy="31" r="3" fill="#c4513a"/><text x="188" y="18" font-size="12.5" font-weight="700" fill="#c4513a" text-anchor="start" font-family="Avenir Next, Arial">⑥ Sound window</text><line x1="242" y1="59" x2="326" y2="53" stroke="#1f2a44" stroke-width="1.5"/><circle cx="242" cy="59" r="3" fill="#1f2a44"/><text x="330" y="57" font-size="12.5" font-weight="700" fill="#1f2a44" text-anchor="start" font-family="Avenir Next, Arial">① Barrel</text><line x1="285" y1="96" x2="326" y2="90" stroke="#1f2a44" stroke-width="1.5"/><circle cx="285" cy="96" r="3" fill="#1f2a44"/><text x="330" y="94" font-size="12.5" font-weight="700" fill="#1f2a44" text-anchor="start" font-family="Avenir Next, Arial">③ Hanger ring</text><line x1="229" y1="152" x2="326" y2="139" stroke="#2a6fdb" stroke-width="1.5"/><circle cx="229" cy="152" r="3" fill="#2a6fdb"/><text x="330" y="143" font-size="12.5" font-weight="700" fill="#2a6fdb" text-anchor="start" font-family="Avenir Next, Arial">④ Chamber (hole)</text><line x1="198" y1="127" x2="326" y2="177" stroke="#2e9e6b" stroke-width="1.5"/><circle cx="198" cy="127" r="3" fill="#2e9e6b"/><text x="330" y="181" font-size="12.5" font-weight="700" fill="#2e9e6b" text-anchor="start" font-family="Avenir Next, Arial">⑦ Pea</text><line x1="37" y1="46" x2="37" y2="108" stroke="#2a6fdb" stroke-width="1.5"/><circle cx="37" cy="46" r="3" fill="#2a6fdb"/><text x="41" y="112" font-size="12.5" font-weight="700" fill="#2a6fdb" text-anchor="start" font-family="Avenir Next, Arial">⑤ Air tunnel (hole)</text><line x1="25" y1="207" x2="266" y2="207" stroke="#7a849c" stroke-width="1.5"/><line x1="25" y1="201" x2="25" y2="213" stroke="#7a849c" stroke-width="1.5"/><line x1="266" y1="201" x2="266" y2="213" stroke="#7a849c" stroke-width="1.5"/><text x="149" y="225" font-size="12" fill="#7a849c" text-anchor="middle" font-family="Avenir Next, Arial">about 39 mm long, 26 mm across, 20 mm tall</text></svg></div>
+  <div class="figure"><svg width="453.6" viewBox="0 0 454 235" style="max-width:100%"><circle cx="185.8" cy="114.6" r="80.6" fill="#f4a259" stroke="#1f2a44" stroke-width="5"/><rect x="24.6" y="34.0" width="161.2" height="37.2" fill="#f4a259" stroke="#1f2a44" stroke-width="5"/><circle cx="278.8" cy="114.6" r="24.8" fill="#f4a259" stroke="#1f2a44" stroke-width="5"/><circle cx="185.8" cy="114.6" r="80.6" fill="#f4a259"/><rect x="24.6" y="34.0" width="161.2" height="37.2" fill="#f4a259"/><circle cx="278.8" cy="114.6" r="24.8" fill="#f4a259"/><circle cx="278.8" cy="114.6" r="12.4" fill="#fff" stroke="#1f2a44" stroke-width="2"/><circle cx="185.8" cy="114.6" r="68.2" fill="#cfe3ff" fill-opacity="0.75" stroke="#2a6fdb" stroke-width="2" stroke-dasharray="5 3"/><rect x="12.2" y="40.2" width="173.6" height="12.4" fill="#cfe3ff" fill-opacity="0.75" stroke="#2a6fdb" stroke-width="2" stroke-dasharray="5 3"/><rect x="154.8" y="27.8" width="31.0" height="24.8" fill="#fff" fill-opacity="0.85" stroke="#c4513a" stroke-width="2.5" stroke-dasharray="5 3"/><line x1="74" y1="40" x2="37" y2="14" stroke="#1f2a44" stroke-width="1.5"/><circle cx="74" cy="40" r="3" fill="#1f2a44"/><text x="41" y="18" font-size="12.5" font-weight="700" fill="#1f2a44" text-anchor="start" font-family="Avenir Next, Arial">② Mouthpiece</text><line x1="170" y1="31" x2="184" y2="14" stroke="#c4513a" stroke-width="1.5"/><circle cx="170" cy="31" r="3" fill="#c4513a"/><text x="188" y="18" font-size="12.5" font-weight="700" fill="#c4513a" text-anchor="start" font-family="Avenir Next, Arial">⑥ Sound window</text><line x1="242" y1="59" x2="326" y2="53" stroke="#1f2a44" stroke-width="1.5"/><circle cx="242" cy="59" r="3" fill="#1f2a44"/><text x="330" y="57" font-size="12.5" font-weight="700" fill="#1f2a44" text-anchor="start" font-family="Avenir Next, Arial">① Barrel</text><line x1="285" y1="96" x2="326" y2="90" stroke="#1f2a44" stroke-width="1.5"/><circle cx="285" cy="96" r="3" fill="#1f2a44"/><text x="330" y="94" font-size="12.5" font-weight="700" fill="#1f2a44" text-anchor="start" font-family="Avenir Next, Arial">③ Hanger ring</text><line x1="229" y1="152" x2="326" y2="139" stroke="#2a6fdb" stroke-width="1.5"/><circle cx="229" cy="152" r="3" fill="#2a6fdb"/><text x="330" y="143" font-size="12.5" font-weight="700" fill="#2a6fdb" text-anchor="start" font-family="Avenir Next, Arial">④ Chamber (hole)</text><line x1="37" y1="46" x2="37" y2="108" stroke="#2a6fdb" stroke-width="1.5"/><circle cx="37" cy="46" r="3" fill="#2a6fdb"/><text x="41" y="112" font-size="12.5" font-weight="700" fill="#2a6fdb" text-anchor="start" font-family="Avenir Next, Arial">⑤ Air tunnel (hole)</text><line x1="25" y1="207" x2="266" y2="207" stroke="#7a849c" stroke-width="1.5"/><line x1="25" y1="201" x2="25" y2="213" stroke="#7a849c" stroke-width="1.5"/><line x1="266" y1="201" x2="266" y2="213" stroke="#7a849c" stroke-width="1.5"/><text x="149" y="225" font-size="12" fill="#7a849c" text-anchor="middle" font-family="Avenir Next, Arial">45 mm long (with the ring), 26 mm across, 20 mm tall</text></svg></div>
   <table class="parts">
     <tr><th></th><th>Part</th><th>Shape</th><th>Solid or hole</th><th>Size (mm)</th><th>Height off ground</th></tr>
-    <tr class=""><td class="pn">①</td><td><b>Barrel</b></td><td>Cylinder</td><td>Solid</td><td><span class="val">26 × 26 × 20</span></td><td><span class="val">0</span></td></tr><tr class=""><td class="pn">②</td><td><b>Mouthpiece</b></td><td>Box</td><td>Solid</td><td><span class="val">26 × 6 × 20</span></td><td><span class="val">0</span></td></tr><tr class=""><td class="pn">③</td><td><b>Hanger ring</b></td><td>Cylinder</td><td>Solid</td><td><span class="val">8 × 8 × 4</span></td><td><span class="val">0</span></td></tr><tr class="holerow"><td class="pn"></td><td><b>…ring hole</b></td><td>Cylinder</td><td><span class=hole>Hole</span></td><td><span class="val">4 × 4 × 10</span></td><td><span class="val">0</span></td></tr><tr class="holerow"><td class="pn">④</td><td><b>Chamber</b></td><td>Cylinder</td><td><span class=hole>Hole</span></td><td><span class="val">22 × 22 × 16</span></td><td><span class="val">2</span></td></tr><tr class="holerow"><td class="pn">⑤</td><td><b>Air tunnel</b></td><td>Box</td><td><span class=hole>Hole</span></td><td><span class="val">28 × 2 × 16</span></td><td><span class="val">2</span></td></tr><tr class="holerow"><td class="pn">⑥</td><td><b>Sound window</b></td><td>Box</td><td><span class=hole>Hole</span></td><td><span class="val">5 × 4 × 12</span></td><td><span class="val">4</span></td></tr><tr class=""><td class="pn">⑦</td><td><b>Pea</b></td><td>Sphere</td><td>Solid</td><td><span class="val">8 × 8 × 8</span></td><td><span class="val">1.9</span></td></tr>
+    <tr class=""><td class="pn">①</td><td><b>Barrel</b></td><td>Cylinder</td><td>Solid</td><td><span class="val">26 × 26 × 20</span></td><td><span class="val">0</span></td></tr><tr class=""><td class="pn">②</td><td><b>Mouthpiece</b></td><td>Box</td><td>Solid</td><td><span class="val">26 × 6 × 20</span></td><td><span class="val">0</span></td></tr><tr class=""><td class="pn">③</td><td><b>Hanger ring</b></td><td>Cylinder</td><td>Solid</td><td><span class="val">8 × 8 × 4</span></td><td><span class="val">0</span></td></tr><tr class="holerow"><td class="pn"></td><td><b>…ring hole</b></td><td>Cylinder</td><td><span class=hole>Hole</span></td><td><span class="val">4 × 4 × 10</span></td><td><span class="val">0</span></td></tr><tr class="holerow"><td class="pn">④</td><td><b>Chamber</b></td><td>Cylinder</td><td><span class=hole>Hole</span></td><td><span class="val">22 × 22 × 16</span></td><td><span class="val">2</span></td></tr><tr class="holerow"><td class="pn">⑤</td><td><b>Air tunnel</b></td><td>Box</td><td><span class=hole>Hole</span></td><td><span class="val">28 × 2 × 16</span></td><td><span class="val">2</span></td></tr><tr class="holerow"><td class="pn">⑥</td><td><b>Sound window</b></td><td>Box</td><td><span class=hole>Hole</span></td><td><span class="val">5 × 4 × 12</span></td><td><span class="val">4</span></td></tr>
   </table>
   <div class="box tip"><div class="lbl">How to read the sizes</div>
   Sizes go <b>long × wide × tall</b>. Looking from the top, “long” is left-right on your screen and “wide” is up-down.
   “Height off ground” is how high you lift the shape with the black cone. Keep this page next to you!</div>
+  <div class="box good"><div class="lbl">How to read the pictures</div>
+  In the next pages, the <b>newest part is bright</b> and older parts are pale. <b>Holes are drawn in see-through blue</b> so you can
+  see them. In TinkerCad, a hole hiding inside a solid shape may disappear until you click on it. That’s normal!
+  The colors on your screen will be different too, and that’s fine.</div>
   <div class="footer"><span>🎵 Make a 3D Printed Whistle in TinkerCad · adapted from the Instructables guide by Ally Zhao (CC BY-NC-SA)</span><span>Page 2 of 7</span></div>
 </section>
 
@@ -144,13 +147,18 @@ span.hole { color: #2a6fdb; font-weight: 700; border: 1.5px dashed #2a6fdb; bord
   number and press <kbd>Enter</kbd>. The <b>height</b> number is on the white square on top.<br>
   <b>Lifting a shape:</b> grab the <b>black cone</b> on top of the shape, click the number and type how high it goes.</p>
 
-  <h2 style="margin-top:14px"><span class="num">2</span>The barrel ①</h2>
-  <ol class="steps">
-    <li>Drag a <b>Cylinder</b> onto the middle of the workplane.</li>
-    <li>Make it <span class="val">26 × 26 × 20</span>.</li>
-  </ol>
+  <div class="cols" style="align-items:center">
+    <div style="flex:2.2">
+      <h2 style="margin-top:8px"><span class="num">2</span>The barrel ①</h2>
+      <ol class="steps">
+        <li>Drag a <b>Cylinder</b> onto the middle of the workplane.</li>
+        <li>Make it <span class="val">26 × 26 × 20</span>.</li>
+      </ol>
+    </div>
+    <div style="flex:1"><figure class="shot" style="width:100%"><svg viewBox="0 0 800 520" style="width:100%;display:block;border-radius:10px"><image href="images/whistle/step-barrel.png" width="800" height="520"/></svg><figcaption><b class="see">You should see:</b> a short, fat cylinder.</figcaption></figure></div>
+  </div>
 
-  <h2 style="margin-top:14px"><span class="num">3</span>The mouthpiece ②</h2>
+  <h2 style="margin-top:8px"><span class="num">3</span>The mouthpiece ②</h2>
   <div class="cols">
     <ol class="steps" style="flex:1.6">
       <li>Drag a <b>Box</b> onto the workplane, to the <b>left</b> of the barrel and a little <b>lower</b> on your screen.</li>
@@ -160,10 +168,9 @@ span.hole { color: #2a6fdb; font-weight: 700; border: 1.5px dashed #2a6fdb; bord
         <b>top</b> dot in the up-down row (see the picture).</li>
       <li>Click the box by itself and press <kbd>←</kbd> <b>13 times</b>.</li>
     </ol>
-    <div style="flex:1; text-align:center"><div class="aligncard"><svg width="150" height="120" viewBox="0 0 150 120"><rect x="40" y="12" width="96" height="70" fill="#f6f7fb" stroke="#7a849c" stroke-dasharray="4 3" stroke-width="1.5"/><circle cx="40" cy="100" r="6" fill="#fff" stroke="#1f2a44" stroke-width="2"/><circle cx="88" cy="100" r="6" fill="#fff" stroke="#1f2a44" stroke-width="2"/><circle cx="136" cy="100" r="9" fill="#e07a5f" stroke="#1f2a44" stroke-width="2"/><circle cx="18" cy="12" r="9" fill="#e07a5f" stroke="#1f2a44" stroke-width="2"/><circle cx="18" cy="47" r="6" fill="#fff" stroke="#1f2a44" stroke-width="2"/><circle cx="18" cy="82" r="6" fill="#fff" stroke="#1f2a44" stroke-width="2"/></svg><div class="small">Click the two orange dots: <b>right</b> and <b>top</b></div></div></div>
+    <div style="flex:1; text-align:center"><div class="aligncard"><svg width="108" height="86" viewBox="0 0 150 120"><rect x="40" y="12" width="96" height="70" fill="#f6f7fb" stroke="#7a849c" stroke-dasharray="4 3" stroke-width="1.5"/><circle cx="40" cy="100" r="6" fill="#fff" stroke="#1f2a44" stroke-width="2"/><circle cx="88" cy="100" r="6" fill="#fff" stroke="#1f2a44" stroke-width="2"/><circle cx="136" cy="100" r="9" fill="#e07a5f" stroke="#1f2a44" stroke-width="2"/><circle cx="18" cy="12" r="9" fill="#e07a5f" stroke="#1f2a44" stroke-width="2"/><circle cx="18" cy="47" r="6" fill="#fff" stroke="#1f2a44" stroke-width="2"/><circle cx="18" cy="82" r="6" fill="#fff" stroke="#1f2a44" stroke-width="2"/></svg><div class="small">Click the two orange dots: <b>right</b> and <b>top</b></div></div><figure class="shot" style="width:100%"><svg viewBox="0 0 800 520" style="width:100%;display:block;border-radius:10px"><image href="images/whistle/step-mouthpiece.png" width="800" height="520"/><line x1="237.2" y1="201.6" x2="111.0" y2="60" stroke="#1f2a44" stroke-width="3"/><circle cx="237.2" cy="201.6" r="6" fill="#1f2a44"/><rect x="30" y="38" width="162.0" height="44" rx="10" fill="#fff" stroke="#1f2a44" stroke-width="3"/><text x="111.0" y="69" font-size="26" font-weight="700" fill="#1f2a44" text-anchor="middle" font-family="Avenir Next, Arial">Mouthpiece</text></svg><figcaption><b class="see">You should see:</b> the backs line up, and the mouthpiece stops at the <b>middle</b> of the barrel.</figcaption></figure></div>
   </div>
-  <div class="box good"><div class="lbl">Check</div>Look at the Parts Map. The back of the mouthpiece lines up with the
-  back of the barrel, and its right end stops at the <b>middle</b> of the barrel.</div>
+
   <div class="footer"><span>🎵 Make a 3D Printed Whistle in TinkerCad · adapted from the Instructables guide by Ally Zhao (CC BY-NC-SA)</span><span>Page 3 of 7</span></div>
 </section>
 
@@ -175,18 +182,17 @@ span.hole { color: #2a6fdb; font-weight: 700; border: 1.5px dashed #2a6fdb; bord
     <li>Drag another <b>Cylinder</b> onto it, click <b>Hole</b> <svg class="icon" viewBox="0 0 40 40"><circle cx="20" cy="20" r="14" fill="none" stroke="#1f2a44" stroke-width="3" stroke-dasharray="5 4"/></svg>, and make it <span class="val">4 × 4 × 10</span>. Press <kbd>D</kbd> to drop it down to the workplane.</li>
     <li>Select both, <b>Align</b> both <b>middle</b> dots, then <b>Group</b> <svg class="icon" viewBox="0 0 40 40"><rect x="5" y="9" width="18" height="18" fill="none" stroke="#1f2a44" stroke-width="3"/><circle cx="26" cy="22" r="10" fill="none" stroke="#1f2a44" stroke-width="3"/></svg> (<kbd>Ctrl</kbd> + <kbd>G</kbd>). Now it’s a ring!</li>
     <li>Drag the ring onto the barrel and press <kbd>D</kbd> to drop it down. Shift-click the barrel, <b>Align</b> both <b>middle</b> dots.</li>
-    <li>Click the ring by itself and press <kbd>→</kbd> <b>15 times</b>. It now sticks out the back of the barrel.</li>
+    <li>Click the ring by itself and press <kbd>→</kbd> <b>15 times</b>. It now sticks out the right side of the barrel.</li>
   </ol>
 
   <h2 style="margin-top:12px"><span class="num">5</span>The chamber ④</h2>
   <ol class="steps">
     <li>Drag a <b>Cylinder</b> onto the barrel. Click <b>Hole</b>. Make it <span class="val">22 × 22 × 16</span>.</li>
     <li>Shift-click the barrel, <b>Align</b> both <b>middle</b> dots.</li>
-    <li>Click the hole by itself and set its height off the ground to <span class="val">2</span>. Now the barrel will have 2 mm thick walls all around.</li>
+    <li>Click the hole by itself and set its height off the ground to <span class="val">2</span>. It sinks inside the barrel and may disappear. That’s OK! The barrel now has 2 mm thick walls all around.</li>
   </ol>
 
-  <div class="box good"><div class="lbl">Check</div>From the top, the ring sticks out the back of the barrel (the side away
-  from the mouthpiece), and the chamber’s dashed circle sits right in the middle of the barrel with an even border all around.</div>
+<div class="shots"><figure class="shot" style="width:100%"><svg viewBox="0 0 800 520" style="width:100%;display:block;border-radius:10px"><image href="images/whistle/step-ring.png" width="800" height="520"/><line x1="557.3" y1="244.8" x2="677.2" y2="60" stroke="#1f2a44" stroke-width="3"/><circle cx="557.3" cy="244.8" r="6" fill="#1f2a44"/><rect x="640" y="38" width="74.4" height="44" rx="10" fill="#fff" stroke="#1f2a44" stroke-width="3"/><text x="677.2" y="69" font-size="26" font-weight="700" fill="#1f2a44" text-anchor="middle" font-family="Avenir Next, Arial">Ring</text></svg><figcaption><b class="see">After Step 4:</b> the ring sticks out on the right, on the side away from the mouthpiece.</figcaption></figure><figure class="shot" style="width:100%"><svg viewBox="0 0 800 520" style="width:100%;display:block;border-radius:10px"><image href="images/whistle/step-chamber.png" width="800" height="520"/><line x1="438.7" y1="180.1" x2="619.1" y2="40" stroke="#2a6fdb" stroke-width="3"/><circle cx="438.7" cy="180.1" r="6" fill="#2a6fdb"/><rect x="560" y="18" width="118.2" height="44" rx="10" fill="#fff" stroke="#2a6fdb" stroke-width="3"/><text x="619.1" y="49" font-size="26" font-weight="700" fill="#2a6fdb" text-anchor="middle" font-family="Avenir Next, Arial">Chamber</text></svg><figcaption><b class="see">After Step 5:</b> the chamber hole is centered inside the barrel, with an even border all around. (Click the hole to see it.)</figcaption></figure></div>
   <div class="box tip"><div class="lbl">Align tip</div>Align should move the <b>new</b> shape, not the big one. If the wrong
   shape moves, press <kbd>Ctrl</kbd> + <kbd>Z</kbd>, move the new shape so it sits more on top of the big one, and try again.</div>
   <div class="footer"><span>🎵 Make a 3D Printed Whistle in TinkerCad · adapted from the Instructables guide by Ally Zhao (CC BY-NC-SA)</span><span>Page 4 of 7</span></div>
@@ -208,56 +214,45 @@ span.hole { color: #2a6fdb; font-weight: 700; border: 1.5px dashed #2a6fdb; bord
     </ol>
     <div style="flex:1; text-align:center"><div class="aligncard"><svg width="150" height="120" viewBox="0 0 150 120"><rect x="40" y="12" width="96" height="70" fill="#f6f7fb" stroke="#7a849c" stroke-dasharray="4 3" stroke-width="1.5"/><circle cx="40" cy="100" r="6" fill="#fff" stroke="#1f2a44" stroke-width="2"/><circle cx="88" cy="100" r="6" fill="#fff" stroke="#1f2a44" stroke-width="2"/><circle cx="136" cy="100" r="9" fill="#e07a5f" stroke="#1f2a44" stroke-width="2"/><circle cx="18" cy="12" r="9" fill="#e07a5f" stroke="#1f2a44" stroke-width="2"/><circle cx="18" cy="47" r="6" fill="#fff" stroke="#1f2a44" stroke-width="2"/><circle cx="18" cy="82" r="6" fill="#fff" stroke="#1f2a44" stroke-width="2"/></svg><div class="small">Same dots for both: <b>right</b> and <b>top</b></div></div></div>
   </div>
-  <div class="box tip"><div class="lbl">Why does this work?</div>The tunnel is only 2 mm tall, so the air comes out as a thin,
-  fast stream. The window sits right where the tunnel meets the barrel, so the stream hits the sharp edge there and splits in half.</div>
-  <h3>Close-up: how it should look from the top</h3>
-  <div class="figure"><svg width="638" viewBox="0 0 638 260" style="max-width:100%"><clipPath id="zc"><rect x="20" y="20" width="418" height="220"/></clipPath><g clip-path="url(#zc)"><circle cx="306" cy="361.0" r="286" fill="#f4a259" stroke="#1f2a44" stroke-width="3"/><rect x="-266" y="75.0" width="572" height="132" fill="#f4a259" stroke="#1f2a44" stroke-width="3"/><circle cx="306" cy="361.0" r="284.5" fill="#f4a259"/><rect x="-264.5" y="76.5" width="572" height="129" fill="#f4a259"/><circle cx="306" cy="361.0" r="242" fill="#fff" stroke="#2a6fdb" stroke-width="2" stroke-dasharray="6 4"/><rect x="-310" y="97.0" width="616" height="44" fill="#fff" stroke="#2a6fdb" stroke-width="2" stroke-dasharray="6 4"/><rect x="196" y="53.0" width="110" height="88" fill="#fff" fill-opacity="0.6" stroke="#c4513a" stroke-width="2.5" stroke-dasharray="6 4"/></g><line x1="251.0" y1="61.80000000000001" x2="450" y2="39.80000000000001" stroke="#c4513a" stroke-width="1.5"/><circle cx="251.0" cy="61.80000000000001" r="3.5" fill="#c4513a"/><text x="455" y="43.80000000000001" font-size="13" font-weight="700" fill="#c4513a" font-family="Avenir Next, Arial">⑥ Sound window</text><text x="455" y="58.80000000000001" font-size="13" font-weight="700" fill="#c4513a" font-family="Avenir Next, Arial">(open to the outside)</text><line x1="306" y1="105.80000000000001" x2="450" y2="110.19999999999999" stroke="#1f2a44" stroke-width="1.5"/><circle cx="306" cy="105.80000000000001" r="3.5" fill="#1f2a44"/><text x="455" y="114.19999999999999" font-size="13" font-weight="700" fill="#1f2a44" font-family="Avenir Next, Arial">Sharp edge:</text><text x="455" y="129.2" font-size="13" font-weight="700" fill="#1f2a44" font-family="Avenir Next, Arial">air splits here!</text><line x1="108" y1="119.0" x2="450" y2="193.8" stroke="#2a6fdb" stroke-width="1.5"/><circle cx="108" cy="119.0" r="3.5" fill="#2a6fdb"/><text x="455" y="197.8" font-size="13" font-weight="700" fill="#2a6fdb" font-family="Avenir Next, Arial">⑤ Air tunnel, 2 mm</text><text x="455" y="212.8" font-size="13" font-weight="700" fill="#2a6fdb" font-family="Avenir Next, Arial">(the air goes this way →)</text><text x="31.0" y="68.39999999999998" font-size="12.5" font-weight="700" fill="#1f2a44" font-family="Avenir Next, Arial">1 mm wall</text><text x="31.0" y="180.60000000000002" font-size="12.5" font-weight="700" fill="#1f2a44" font-family="Avenir Next, Arial">3 mm wall</text><text x="174" y="259.8" font-size="12.5" font-weight="700" fill="#2a6fdb" font-family="Avenir Next, Arial">④ chamber</text></svg></div>
+<div class="shots"><figure class="shot" style="width:100%"><svg viewBox="0 0 800 520" style="width:100%;display:block;border-radius:10px"><image href="images/whistle/step-tunnel.png" width="800" height="520"/><line x1="149.2" y1="294.8" x2="71.8" y2="60" stroke="#2a6fdb" stroke-width="3"/><circle cx="149.2" cy="294.8" r="6" fill="#2a6fdb"/><rect x="20" y="38" width="103.6" height="44" rx="10" fill="#fff" stroke="#2a6fdb" stroke-width="3"/><text x="71.8" y="69" font-size="26" font-weight="700" fill="#2a6fdb" text-anchor="middle" font-family="Avenir Next, Arial">Tunnel</text></svg><figcaption><b class="see">Air tunnel:</b> a thin, tall slab that pokes out of the end of the mouthpiece.</figcaption></figure><figure class="shot" style="width:100%"><svg viewBox="0 0 800 520" style="width:100%;display:block;border-radius:10px"><image href="images/whistle/step-window.png" width="800" height="520"/><line x1="301.7" y1="314.2" x2="91.8" y2="60" stroke="#2a6fdb" stroke-width="3"/><circle cx="301.7" cy="314.2" r="6" fill="#2a6fdb"/><rect x="40" y="38" width="103.6" height="44" rx="10" fill="#fff" stroke="#2a6fdb" stroke-width="3"/><text x="91.8" y="69" font-size="26" font-weight="700" fill="#2a6fdb" text-anchor="middle" font-family="Avenir Next, Arial">Window</text></svg><figcaption><b class="see">Sound window:</b> turned around to the back. It pokes out of the back wall, right next to the barrel.</figcaption></figure></div>
+  <div class="box warn"><div class="lbl">Careful!</div>The window goes on the <b>back</b> of the mouthpiece (the side at the top of your screen in the <b>Top</b> view), and it
+  pokes out by just <b>1 mm</b>. If it isn’t poking out, the air has no way out and you won’t get a whistle.</div>
   <div class="footer"><span>🎵 Make a 3D Printed Whistle in TinkerCad · adapted from the Instructables guide by Ally Zhao (CC BY-NC-SA)</span><span>Page 5 of 7</span></div>
 </section>
 
-<!-- PAGE 5: GROUP + PEA -->
+<!-- PAGE 6: GROUP -->
 <section class="page">
   <h2><span class="num">7</span>Group to cut the holes</h2>
   <ol class="steps">
     <li>Press <kbd>Ctrl</kbd> + <kbd>A</kbd> to select everything.</li>
-    <li>Click <b>Group</b> <svg class="icon" viewBox="0 0 40 40"><rect x="5" y="9" width="18" height="18" fill="none" stroke="#1f2a44" stroke-width="3"/><circle cx="26" cy="22" r="10" fill="none" stroke="#1f2a44" stroke-width="3"/></svg> (or <kbd>Ctrl</kbd> + <kbd>G</kbd>).</li>
+    <li>Click <b>Group</b> <svg class="icon" viewBox="0 0 40 40"><rect x="5" y="9" width="18" height="18" fill="none" stroke="#1f2a44" stroke-width="3"/><circle cx="26" cy="22" r="10" fill="none" stroke="#1f2a44" stroke-width="3"/></svg> (or <kbd>Ctrl</kbd> + <kbd>G</kbd>). The blue holes disappear and get cut out!</li>
+    <li>Drag the view cube to turn your whistle around. Find these two openings:</li>
   </ol>
-  <div class="box good"><div class="lbl">Check</div>Click the view cube’s <b>Home</b> button (the little house) and drag the view cube to look around:
-  <ul style="margin:4px 0 0 18px; padding:0">
-    <li>Look into the end of the mouthpiece: you should see a <b>thin slot</b> (the air tunnel).</li>
-    <li>On the flat top of the mouthpiece, right next to the barrel, you should see a <b>rectangle opening</b> (the sound window).</li>
-  </ul></div>
+<div class="shots"><figure class="shot" style="width:100%"><svg viewBox="0 0 800 520" style="width:100%;display:block;border-radius:10px"><image href="images/whistle/done-end.png" width="800" height="520"/><line x1="383.1" y1="223.2" x2="137.5" y2="60" stroke="#2a6fdb" stroke-width="3"/><circle cx="383.1" cy="223.2" r="6" fill="#2a6fdb"/><rect x="20" y="38" width="235.0" height="44" rx="10" fill="#fff" stroke="#2a6fdb" stroke-width="3"/><text x="137.5" y="69" font-size="26" font-weight="700" fill="#2a6fdb" text-anchor="middle" font-family="Avenir Next, Arial">Air tunnel slot</text></svg><figcaption><b class="see">The end of the mouthpiece:</b> a thin slot. This is where you blow.</figcaption></figure><figure class="shot" style="width:100%"><svg viewBox="0 0 800 520" style="width:100%;display:block;border-radius:10px"><image href="images/whistle/done-back.png" width="800" height="520"/><line x1="307.4" y1="309.8" x2="565.6" y2="60" stroke="#c4513a" stroke-width="3"/><circle cx="307.4" cy="309.8" r="6" fill="#c4513a"/><rect x="470" y="38" width="191.2" height="44" rx="10" fill="#fff" stroke="#c4513a" stroke-width="3"/><text x="565.6" y="69" font-size="26" font-weight="700" fill="#c4513a" text-anchor="middle" font-family="Avenir Next, Arial">Sound window</text></svg><figcaption><b class="see">The back:</b> a rectangle opening right next to the barrel.</figcaption></figure></div>
   <div class="box warn"><div class="lbl">Uh oh?</div>No slot or no window? Press <kbd>Ctrl</kbd> + <kbd>Z</kbd> to undo the group,
   then check the hole sizes, heights and arrow presses against the Parts Map.</div>
-
-  <h2 style="margin-top:14px"><span class="num">8</span>Add the pea ⑦</h2>
-  <p class="step-intro">The pea is printed <b>inside</b> the chamber, barely touching the floor. After printing, your teacher
-  pokes it loose so it can rattle around. That’s why the pea is added <b>after</b> grouping, so the holes don’t cut it away!</p>
-  <div class="cols">
-    <ol class="steps" style="flex:1.6">
-      <li>Drag a <b>Sphere</b> onto the whistle and make it <span class="val">8 × 8 × 8</span>.</li>
-      <li>Shift-click the whistle. <b>Align</b>: <b>right</b> dot and <b>middle</b> dot.</li>
-      <li>Click the pea by itself and press <kbd>←</kbd> <b>15 times</b>. Now it’s right above the chamber.</li>
-      <li>Lift it to <span class="val">1.9</span> (yes, one point nine). It sinks into the barrel and disappears. That’s correct!</li>
-      <li>Press <kbd>Ctrl</kbd> + <kbd>A</kbd>, then <kbd>Ctrl</kbd> + <kbd>G</kbd> to group the pea with your whistle.</li>
-    </ol>
-    <div style="flex:1; text-align:center"><div class="aligncard"><svg width="150" height="120" viewBox="0 0 150 120"><rect x="40" y="12" width="96" height="70" fill="#f6f7fb" stroke="#7a849c" stroke-dasharray="4 3" stroke-width="1.5"/><circle cx="40" cy="100" r="6" fill="#fff" stroke="#1f2a44" stroke-width="2"/><circle cx="88" cy="100" r="6" fill="#fff" stroke="#1f2a44" stroke-width="2"/><circle cx="136" cy="100" r="9" fill="#e07a5f" stroke="#1f2a44" stroke-width="2"/><circle cx="18" cy="12" r="6" fill="#fff" stroke="#1f2a44" stroke-width="2"/><circle cx="18" cy="47" r="9" fill="#e07a5f" stroke="#1f2a44" stroke-width="2"/><circle cx="18" cy="82" r="6" fill="#fff" stroke="#1f2a44" stroke-width="2"/></svg><div class="small">This time: <b>right</b> and <b>middle</b></div></div></div>
+  <h3>What’s inside?</h3>
+  <div class="cols" style="align-items:center">
+    <div style="flex:1.45"><figure class="shot" style="width:100%"><svg viewBox="0 0 800 520" style="width:100%;display:block;border-radius:10px"><image href="images/whistle/done-cut.png" width="800" height="520"/><defs><marker id="ah2" markerWidth="5" markerHeight="5" refX="3" refY="2.5" orient="auto"><path d="M0,0 L5,2.5 L0,5 z" fill="#2a6fdb"/></marker></defs><path d="M6,125.7 L421.7,125.7" stroke="#2a6fdb" stroke-width="7" fill="none" marker-end="url(#ah2)"/><path d="M505.8,167.8 L533.4,180.5 L556.2,199.0 L572.9,222.1 L582.2,248.2 L583.6,275.5 L576.9,302.3 L562.5,326.6 L541.6,346.8 L515.4,361.5 L485.8,369.7 L454.8,370.9 L424.6,365.0 L397.1,352.3 L374.2,333.8 L357.5,310.7 L348.2,284.6 L346.8,257.3" stroke="#2a6fdb" stroke-width="6" stroke-dasharray="4 11" stroke-linecap="round" fill="none" marker-end="url(#ah2)"/><line x1="465.2" y1="119.3" x2="641.0" y2="40" stroke="#c4513a" stroke-width="3"/><circle cx="465.2" cy="119.3" r="6" fill="#c4513a"/><rect x="560" y="18" width="162.0" height="44" rx="10" fill="#fff" stroke="#c4513a" stroke-width="3"/><text x="641.0" y="49" font-size="26" font-weight="700" fill="#c4513a" text-anchor="middle" font-family="Avenir Next, Arial">Sharp edge</text><line x1="465.2" y1="359.2" x2="99.1" y2="440" stroke="#1f2a44" stroke-width="3"/><circle cx="465.2" cy="359.2" r="6" fill="#1f2a44"/><rect x="40" y="418" width="118.2" height="44" rx="10" fill="#fff" stroke="#1f2a44" stroke-width="3"/><text x="99.1" y="449" font-size="26" font-weight="700" fill="#1f2a44" text-anchor="middle" font-family="Avenir Next, Arial">Chamber</text></svg><figcaption>Your whistle <b>cut in half</b>, seen from above. (Don’t cut yours! This is just to see inside.)</figcaption></figure></div>
+    <div style="flex:1" class="small">
+      <p><b>1.</b> Your breath goes along the thin tunnel, like the straight arrow.</p>
+      <p><b>2.</b> It hits the <b>sharp edge</b> at the window and splits. Some escapes out of the window.</p>
+      <p><b>3.</b> The rest spins around the chamber, like the dotted arrow, and shakes the air. That’s the sound!</p>
+    </div>
   </div>
-  <div class="box tip"><div class="lbl">Why 1.9?</div>The chamber floor is 2 mm thick. Lifting the pea to 1.9 makes it
-  sink just <b>0.1 mm</b> into the floor. That tiny spot holds it in place while printing, and is easy to snap later.</div>
   <div class="footer"><span>🎵 Make a 3D Printed Whistle in TinkerCad · adapted from the Instructables guide by Ally Zhao (CC BY-NC-SA)</span><span>Page 6 of 7</span></div>
 </section>
 
-<!-- PAGE 6: FINISH -->
+<!-- PAGE 7: FINISH -->
 <section class="page">
-  <h2><span class="num">9</span>Final check ✅</h2>
+  <h2><span class="num">8</span>Final check ✅</h2>
   <ol class="steps">
     <li>It looks like the Parts Map from the top: barrel, mouthpiece and hanger ring.</li>
-    <li>There’s a thin slot at the end of the mouthpiece and a rectangle window next to the barrel.</li>
-    <li>It’s about <span class="val">39 × 26 × 20</span> mm and sitting flat on the workplane.</li>
+    <li>There’s a thin slot at the end of the mouthpiece and a rectangle window on the back, next to the barrel.</li>
+    <li>It’s about <span class="val">45 × 26 × 20</span> mm and sitting flat on the workplane.</li>
   </ol>
 
-  <h2 style="margin-top:14px"><span class="num">10</span>Save it and hand it in 💾</h2>
+  <h2 style="margin-top:14px"><span class="num">9</span>Save it and hand it in 💾</h2>
   <ol class="steps">
     <li>Check the name at the top left says <b>Whistle – First Name Last Initial</b>. Not right? Click it and fix it.</li>
     <li>TinkerCad saves by itself while you work. To be sure, click the <b>TinkerCad logo</b> (top left) to go back to your
@@ -279,9 +274,9 @@ span.hole { color: #2a6fdb; font-weight: 700; border: 1.5px dashed #2a6fdb; bord
     <a href="https://www.instructables.com/3D-Printing-Whistle/">“3D Printing Whistle”</a>
     by <b>Ally Zhao</b> on Instructables, used under a
     <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons BY-NC-SA</a> license. Thank you, Ally!
-    <b>Changes:</b> the original was made in 123D Design; this version rebuilds the same whistle (barrel, mouthpiece, air tunnel,
-    sound window, hanger and pea) with TinkerCad shapes, using the original’s sizes, and is rewritten as a step-by-step
-    classroom worksheet with new drawings. It leaves out the original’s tapered edge inside the sound window.
+    <b>Changes:</b> the original was made in 123D Design; this version rebuilds the whistle (barrel, mouthpiece, air tunnel,
+    sound window and hanger) with TinkerCad shapes, using the original’s sizes, and is rewritten as a step-by-step
+    classroom worksheet with new pictures. To keep it simple, it leaves out the original’s pea and the tapered edge inside the sound window.
     This adapted version is shared under the same license,
     <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a>: free to share and change for
     non-commercial use, as long as you give credit and share alike.
