@@ -1,0 +1,170 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Box with a Lid in OnShape</title><style>
+@page { size: Letter; margin: 0; }
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; background: #fff; }
+body { font-family: "Avenir Next", "Avenir", "Helvetica Neue", Arial, sans-serif; color: #1f2a44;
+       font-size: 12.5pt; line-height: 1.34; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+.page { width: 8.5in; height: 11in; padding: 0.5in 0.65in 0.7in; position: relative;
+        page-break-after: always; break-after: page; overflow: hidden; }
+.page:last-child { page-break-after: auto; break-after: auto; }
+h1, h2, h3, .big { font-family: "Arial Rounded MT Bold", "Avenir Next", Arial, sans-serif; font-weight: 700; }
+h1 { font-size: 36pt; line-height: 1.05; margin: 0 0 8px; }
+h2 { font-size: 21pt; margin: 0 0 10px; display: flex; align-items: center; gap: 12px; }
+h3 { font-size: 14.5pt; margin: 14px 0 6px; }
+p { margin: 6px 0; }
+.num { display: inline-flex; align-items: center; justify-content: center; width: 42px; height: 42px; border-radius: 50%;
+        background: #2a6fdb; color: #fff; font-size: 20pt; flex: none; }
+.sub { font-size: 15pt; color: #4a5672; margin: 0 0 18px; }
+.footer { position: absolute; left: 0.65in; right: 0.65in; bottom: 0.32in; display: flex; justify-content: space-between;
+          gap: 12px; font-size: 8pt; color: #7a849c; white-space: nowrap; border-top: 1px solid #d9dee8; padding-top: 6px; }
+ol.steps { margin: 6px 0 0; padding-left: 0; list-style: none; counter-reset: s; }
+ol.steps > li { counter-increment: s; position: relative; padding: 4px 0 4px 40px; min-height: 30px; }
+ol.steps > li::before { content: "☐"; position: absolute; left: 4px; top: 1px; font-size: 20pt; line-height: 1;
+                         color: #2a6fdb; font-family: "Apple Symbols", "Segoe UI Symbol", sans-serif; }
+kbd { display: inline-block; border: 1.5px solid #1f2a44; border-bottom-width: 3px; border-radius: 6px; padding: 0 7px;
+       font-family: Menlo, Consolas, monospace; font-size: 11pt; background: #f6f7fb; line-height: 1.45; white-space: nowrap; }
+.val { font-family: Menlo, Consolas, monospace; font-weight: 700; background: #fff3d6; border-radius: 4px; padding: 0 5px; }
+.box { border: 2.5px solid #1f2a44; border-radius: 14px; padding: 9px 16px; margin: 10px 0; }
+.tip { border-color: #2a6fdb; background: #eef4ff; }
+.warn { border-color: #e07a5f; background: #fff1ec; }
+.good { border-color: #2e9e6b; background: #ecf8f1; }
+.box .lbl { font-family: "Arial Rounded MT Bold", Arial, sans-serif; font-size: 12pt; text-transform: uppercase;
+             letter-spacing: .04em; margin-bottom: 2px; }
+.tip .lbl { color: #2a6fdb; } .warn .lbl { color: #c4513a; } .good .lbl { color: #2e9e6b; }
+.icon { width: 26px; height: 26px; vertical-align: -7px; background: #fff; border: 1.5px solid #1f2a44; border-radius: 6px; padding: 2px; }
+.cols { display: flex; gap: 22px; align-items: flex-start; }
+.cols > * { flex: 1; }
+.small { font-size: 11pt; }
+.muted { color: #4a5672; }
+/* cover */
+.cover-top { display: flex; align-items: center; gap: 10px; }
+.badge { display: inline-block; background: #ffd166; border-radius: 999px; padding: 3px 14px; font-weight: 700; font-size: 11pt; margin-right: 6px; }
+.needs { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 22px; margin-top: 10px; }
+.needs div { border-left: 5px solid #ffd166; padding-left: 10px; }
+.words dt { font-weight: 700; margin-top: 7px; }
+.words dd { margin: 0 0 0 0; }
+/* dot map */
+table.map { width: 100%; border-collapse: collapse; }
+table.map td { border-bottom: 1.5px solid #d9dee8; padding: 6px 8px; vertical-align: middle; }
+.fcell { width: 140px; white-space: nowrap; }
+.fcell svg { vertical-align: middle; }
+.fnum { display: inline-block; font-family: "Arial Rounded MT Bold", Arial; font-size: 26pt; vertical-align: middle; margin-left: 10px; }
+.opp { width: 130px; color: #4a5672; }
+.moves { font-size: 12pt; line-height: 1.5; columns: 2; column-gap: 18px; }
+/* order */
+.order { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px 14px; margin-top: 16px; }
+.ostep { border: 2.5px solid #1f2a44; border-radius: 14px; padding: 10px 12px 12px; text-align: center; position: relative; }
+.obadge { position: absolute; top: -12px; left: -12px; width: 32px; height: 32px; border-radius: 50%; background: #2a6fdb;
+           color: #fff; font-weight: 700; display: flex; align-items: center; justify-content: center; font-size: 14pt; }
+.oface { font-family: "Arial Rounded MT Bold", Arial; font-size: 15pt; margin-top: 4px; }
+.oturn { font-size: 20pt; font-weight: 700; color: #e07a5f; line-height: 1.1; }
+.odesc { font-size: 10.5pt; color: #4a5672; margin-top: 4px; }
+.checklist li { margin: 5px 0; }
+.lines div { border-bottom: 1.5px solid #b9c1d3; height: 26px; }
+a { color: #2a6fdb; }
+
+.blank { display: inline-block; border-bottom: 2px solid #1f2a44; height: 1.1em; vertical-align: -3px; margin: 0 3px; }
+.letter { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; border-radius: 50%;
+          border: 2px solid currentColor; font-weight: 700; font-size: 11pt; margin-right: 2px; background: #fff; }
+.tool { display: inline-block; border: 1.5px solid #1f2a44; border-radius: 6px; padding: 0 7px; font-weight: 700;
+        background: #eef4ff; font-size: 11.5pt; line-height: 1.45; white-space: nowrap; }
+table.dims { border-collapse: collapse; width: 100%; font-size: 12pt; }
+table.dims td { border-bottom: 1.5px solid #d9dee8; padding: 5px 6px; }
+table.dims td:first-child { width: 34px; }
+.teacher { border-color: #7a849c; background: #f6f7fb; font-size: 11pt; }
+.teacher .lbl { color: #4a5672; }
+.figure { text-align: center; margin: 6px 0; }
+.step-intro { margin: 0 0 4px; }
+</style></head><body><section class="page">
+  <div><span class="badge" style="background:#ffd166">Challenge</span><span class="badge" style="background:#cfe3ff">OnShape</span><span class="badge" style="background:#d6f2e2">2 class periods</span></div>
+  <h1 style="margin-top:16px">Box with a Lid<br>in OnShape 📦</h1>
+  <p class="sub">Design a little box with a lid that actually fits. It’s a real engineering challenge, because two parts have to fit together!</p>
+  <div class="figure"><svg width="560" viewBox="0 0 560 360" style="max-width:100%"><path d="M40.0,300.0 L340.0,300.0 L340.0,150.0 L330.0,150.0 L330.0,290.0 L50.0,290.0 L50.0,150.0 L40.0,150.0 Z" fill="#f4a259" stroke="#1f2a44" stroke-width="2.5" stroke-linejoin="round"/><path d="M40.0,90.0 L340.0,90.0 L340.0,105.0 L325.5,105.0 L325.5,130.0 L318.0,130.0 L318.0,105.0 L62.0,105.0 L62.0,130.0 L54.5,130.0 L54.5,105.0 L40.0,105.0 Z" fill="#ffd166" stroke="#1f2a44" stroke-width="2.5" stroke-linejoin="round"/><path d="M190.0,138.0 l0,29.0" stroke="#7a849c" stroke-width="2" marker-end="url(#da)"/><defs><marker id="da" markerWidth="8" markerHeight="8" refX="4" refY="5" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#7a849c"/></marker></defs><text x="198.0" y="138.0" font-size="12" fill="#7a849c" font-family="Avenir Next, Arial">the lid drops in</text><line x1="335.0" y1="225.0" x2="380.0" y2="225.0" stroke="#1f2a44" stroke-width="1.5"/><circle cx="335.0" cy="225.0" r="3" fill="#1f2a44"/><text x="385.0" y="229.0" font-size="13" font-weight="700" fill="#1f2a44" text-anchor="start" font-family="Avenir Next, Arial">Box wall</text><text x="385.0" y="245.0" font-size="13" font-weight="700" fill="#1f2a44" text-anchor="start" font-family="Avenir Next, Arial">2 mm</text><line x1="190.0" y1="295.0" x2="380.0" y2="290.0" stroke="#1f2a44" stroke-width="1.5"/><circle cx="190.0" cy="295.0" r="3" fill="#1f2a44"/><text x="385.0" y="294.0" font-size="13" font-weight="700" fill="#1f2a44" text-anchor="start" font-family="Avenir Next, Arial">Floor 2 mm</text><line x1="290.0" y1="97.5" x2="380.0" y2="90.0" stroke="#b8860b" stroke-width="1.5"/><circle cx="290.0" cy="97.5" r="3" fill="#b8860b"/><text x="385.0" y="94.0" font-size="13" font-weight="700" fill="#b8860b" text-anchor="start" font-family="Avenir Next, Arial">Lid top 3 mm</text><line x1="321.5" y1="120.0" x2="380.0" y2="135.0" stroke="#b8860b" stroke-width="1.5"/><circle cx="321.5" cy="120.0" r="3" fill="#b8860b"/><text x="385.0" y="139.0" font-size="13" font-weight="700" fill="#b8860b" text-anchor="start" font-family="Avenir Next, Arial">Lip: 1.5 mm thick,</text><text x="385.0" y="155.0" font-size="13" font-weight="700" fill="#b8860b" text-anchor="start" font-family="Avenir Next, Arial">5 mm deep</text><circle cx="52.25" cy="115.0" r="13" fill="none" stroke="#2a6fdb" stroke-width="2"/><line x1="40.25" y1="109.0" x2="12" y2="40" stroke="#2a6fdb" stroke-width="1.5"/><circle cx="40.25" cy="109.0" r="3" fill="#2a6fdb"/><text x="17" y="44" font-size="13" font-weight="700" fill="#2a6fdb" text-anchor="start" font-family="Avenir Next, Arial">Gap 0.3 mm</text><text x="17" y="60" font-size="13" font-weight="700" fill="#2a6fdb" text-anchor="start" font-family="Avenir Next, Arial">(so it fits!)</text><line x1="40.0" y1="322.0" x2="340.0" y2="322.0" stroke="#1f2a44" stroke-width="2"/><line x1="40.0" y1="316.0" x2="40.0" y2="328.0" stroke="#1f2a44" stroke-width="2"/><line x1="340.0" y1="316.0" x2="340.0" y2="328.0" stroke="#1f2a44" stroke-width="2"/><circle cx="190.0" cy="322.0" r="11" fill="#fff" stroke="#1f2a44" stroke-width="2"/><text x="190.0" y="327.0" font-size="14" font-weight="700" fill="#1f2a44" text-anchor="middle" font-family="Avenir Next, Arial">60</text></svg></div>
+  <p class="small muted" style="text-align:center">The box and lid cut in half, so you can see inside. (The gap is drawn bigger than it really is.)</p>
+  <h3>The secret: the lip and the gap</h3>
+  <p>The lid has a <b>lip</b>: a thin rim underneath that slides <b>inside</b> the box, so the lid can’t slide off. But if the lip is
+  exactly the size of the inside of the box, it won’t fit! 3D prints come out a tiny bit fat. So we leave a
+  <b>gap</b> of <span class="val">0.3</span> mm on every side.</p>
+  <div class="box"><div class="lbl">Before you start</div>
+  Finish the <b>Spinning Top</b> first. Make a new document named <b>Box – First Name Last Initial</b>,
+  and set <b>Workspace units</b> to <b>Millimeter</b>.</div><div class="footer"><span>📦 Box with a Lid in OnShape (challenge)</span><span>Page 1 of 5</span></div></section><section class="page">
+  <h2><span class="num">1</span>Sketch the box shape</h2>
+  <ol class="steps">
+    <li>Click <span class="tool">Sketch</span>, then click the <b>Top</b> plane.</li>
+    <li>Click the <span class="tool">Center point rectangle</span> tool. Click on the <b>origin</b> first (that’s the center), then click again to make a rectangle.</li>
+    <li>Click <span class="tool">Dimension</span> (<kbd>D</kbd>). Click the top line and type <span class="val">60</span>. Click a side line and type <span class="val">40</span>.</li>
+    <li>Click the green ✔ to finish the sketch.</li>
+  </ol>
+
+  <h2 style="margin-top:14px"><span class="num">2</span>Pull it up into 3D</h2>
+  <ol class="steps">
+    <li>Click <span class="tool">Extrude</span>. Click inside your rectangle.</li>
+    <li>Make sure <b>New</b> is chosen at the top. Set <b>Depth</b> to <span class="val">30</span> mm. Click ✔.</li>
+  </ol>
+  <div class="box good"><div class="lbl">Check</div>You have a solid block, 60 × 40 × 30 mm. It’s a brick for now!</div>
+
+  <h2 style="margin-top:14px"><span class="num">3</span>Round the corners</h2>
+  <ol class="steps">
+    <li>Click <span class="tool">Fillet</span>. Click the <b>4 up-and-down edges</b> at the corners of the block (spin the view to reach the back ones).</li>
+    <li>Set the radius to <span class="val">5</span> mm and click ✔.</li>
+  </ol>
+
+  <h2 style="margin-top:14px"><span class="num">4</span>Hollow it out</h2>
+  <ol class="steps">
+    <li>Click <span class="tool">Shell</span>. For <b>Faces to remove</b>, click the <b>top face</b> of the block.</li>
+    <li>Set <b>Thickness</b> to <span class="val">2</span> mm. Click ✔.</li>
+  </ol>
+  <div class="box good"><div class="lbl">Check</div>Now it’s an open box with 2 mm walls and rounded corners. 🎉
+  The feature list shows: Sketch 1, Extrude 1, Fillet 1, Shell 1.</div><div class="footer"><span>📦 Box with a Lid in OnShape (challenge)</span><span>Page 2 of 5</span></div></section><section class="page">
+  <h2><span class="num">5</span>The lid top</h2>
+  <p class="step-intro">We’ll copy the outline of the box’s rim, so the lid matches perfectly.</p>
+  <ol class="steps">
+    <li>Click <span class="tool">Sketch</span>, then click the <b>top rim</b> of the box (the thin flat edge all the way around).</li>
+    <li>Click the <span class="tool">Use</span> tool (<kbd>U</kbd>), then click the rim again. OnShape copies its outside <b>and</b> inside outlines into your sketch. Press <kbd>Esc</kbd>, then click ✔.</li>
+    <li>Click <span class="tool">Extrude</span>. Click <b>both</b> shaded areas of the new sketch: the thin rim ring <b>and</b> the big middle.</li>
+    <li>Choose <b>New</b> at the top (not Add!). Set <b>Depth</b> to <span class="val">3</span> mm. If it goes down into the box, click the <b>flip arrow</b> so it goes up. Click ✔.</li>
+  </ol>
+  <div class="box good"><div class="lbl">Check</div>The <b>Parts</b> list now says <b>Parts (2)</b>: the box and the lid. The lid is a flat plate sitting on top.</div>
+  <div class="box warn"><div class="lbl">Why “New”?</div>“New” makes a separate part. If you pick <b>Add</b>, OnShape glues the lid onto the box
+  forever, and you’d have a box you can never open! 😅</div><div class="footer"><span>📦 Box with a Lid in OnShape (challenge)</span><span>Page 3 of 5</span></div></section><section class="page">
+  <h2><span class="num">6</span>The lip (the tricky part!)</h2>
+  <ol class="steps">
+    <li>Click <span class="tool">Sketch</span>, then click the <b>top rim</b> of the box again. (The lid is in the way? Click the 👁 eye next to the lid in the Parts list to hide it. Click it again later to show it.)</li>
+    <li>Click <span class="tool">Use</span> and click the <b>inside edges</b> of the box (where the inside walls meet the rim).</li>
+    <li>Click the <span class="tool">Offset</span> tool. Click the outline you just copied, and type <span class="val">0.3</span>. Make sure the new line is on the <b>inside</b>
+      (click the flip arrow if it’s outside). That’s your <b>gap</b>.</li>
+    <li>Use <span class="tool">Offset</span> again on the <b>same</b> copied outline, and type <span class="val">1.8</span> (that’s the 0.3 gap + the 1.5 mm lip). Inside again! Click ✔.</li>
+    <li>Click <span class="tool">Extrude</span>. Click only the <b>thin ring between your two offset lines</b>. That’s the lip.</li>
+    <li>Choose <b>Add</b> at the top. Set <b>Depth</b> to <span class="val">5</span> mm, going <b>down</b> into the box (flip it if needed).</li>
+    <li>Turn on <b>Merge scope</b> and click the <b>lid</b>, so the lip joins the lid (not the box!). Click ✔.</li>
+  </ol>
+  <div class="box good"><div class="lbl">Check</div>Show the lid and hide the <b>box</b> (eye icon in the Parts list). Flip the view to look under the lid:
+  you should see the lip, a rounded rectangle ring sticking down 5 mm. Then show the box again.</div>
+  <div class="box tip"><div class="lbl">Math check</div>Box inside = 60 − 2 − 2 = <b>56</b> mm long. Lip outside = 56 − 0.3 − 0.3 = <b>55.4</b> mm. That 0.6 mm of total wiggle room is what lets it fit!</div><div class="footer"><span>📦 Box with a Lid in OnShape (challenge)</span><span>Page 4 of 5</span></div></section><section class="page">
+  <h2><span class="num">7</span>Make it yours 🎨</h2>
+  <ul style="margin:0 0 0 20px; padding:0">
+    <li><b>Change the size:</b> right-click <b>Sketch 1</b> → <b>Edit</b>, change 60 or 40, click ✔. Everything else updates by itself, even the lid! (Keep it under <span class="val">80</span> mm.)</li>
+    <li><b>Put your initials on the lid:</b> <span class="tool">Sketch</span> on the top of the lid, use the <span class="tool">Text</span> tool, then <span class="tool">Extrude</span> it <b>Add</b> <span class="val">1</span> mm up (merge with the lid).</li>
+    <li><b>Make it deeper:</b> edit <b>Extrude 1</b> and change 30.</li>
+  </ul>
+
+  <h2 style="margin-top:14px"><span class="num">8</span>Hand it in 📤</h2>
+  <ol class="steps">
+    <li>Check the document name: <b>Box – First Name Last Initial</b>.</li>
+    <li>Click <b>Share</b>, type your teacher’s email (<span class="val">iggyzs@yahoo.com</span>), choose <b>Can view</b>, turn on <b>Export</b>, and click <b>Share</b>.</li>
+    <li>Tell your teacher it’s ready. The box and lid print as <b>two separate parts</b>, and the lid gets flipped over to print.</li>
+  </ol>
+  <div class="box teacher"><div class="lbl">Teacher notes</div>Export each part separately (right-click the part in the Parts list → Export → STL).
+  Print the lid upside down (flat top on the bed) so the lip needs no supports. If lids come out too tight on your printer,
+  have students change both offsets: 0.4 / 1.9 instead of 0.3 / 1.8.</div>
+  <h2 style="margin-top:14px">🔧 The fit test</h2>
+  <p>When your box is printed, put the lid on. How does it feel? Circle one:</p>
+  <p style="font-size:14pt; text-align:center; margin:8px 0">Too tight 😬 &nbsp;&nbsp;&nbsp; Just right 😃 &nbsp;&nbsp;&nbsp; Too loose 🙃</p>
+  <p class="small muted">Too tight? Make the gap bigger (both offsets go up by 0.1). Too loose? Make it smaller. Then print the lid again.
+  That’s called <b>iterating</b>, and real engineers do it all the time!</p>
+
+  <h3>🤔 Think about it</h3>
+  <p><b>1. Why did the lid need a gap? What would happen without it?</b></p>
+  <div class="lines"><div></div><div></div></div>
+  <p style="margin-top:10px"><b>2. When you changed the box size in Sketch 1, the lid changed too. Why is that useful?</b></p>
+  <div class="lines"><div></div><div></div></div><div class="footer"><span>📦 Box with a Lid in OnShape (challenge)</span><span>Page 5 of 5</span></div></section></body></html>

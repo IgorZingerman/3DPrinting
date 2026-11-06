@@ -33,9 +33,20 @@ No experience needed. If you can click and drag a mouse, you can do this. 🚀
 
 ## Project 2 Help: Whistle or Dice
 
-- 🎵 [Whistle](https://www.instructables.com/Make-a-Whistle-With-Tinkercad/)
-- 🎲 [Dice with Dots (better)](https://www.instructables.com/How-to-Make-Your-Own-6-sided-Dice-on-TinkerCad/)
+- 🎵 [Whistle: our step-by-step guide (PDF)](guides/Whistle-TinkerCad-Guide.pdf) (adapted from [this Instructables guide](https://www.instructables.com/3D-Printing-Whistle/) by Ally Zhao)
+- 🎲 [Dice with Dots: our step-by-step guide (PDF)](guides/Dice-TinkerCad-Guide.pdf) (adapted from [this Instructables guide](https://www.instructables.com/How-to-Make-Your-Own-6-sided-Dice-on-TinkerCad/) by Potato_Person_)
 - 🔢 [Dice with Numbers](https://www.instructables.com/DIY-Dice-in-Tinkercad/)
+
+## Project 3 Help: Rocket Launch
+
+- 🚀 [Rocket Launch Design Mission (PDF)](guides/Rocket-TinkerCad-Guide.pdf): learn to use calipers, measure the launcher, and design a rocket that fits it
+- 🦶 The launcher we use: a [stomp rocket launcher](https://www.amazon.com/dp/B08RHP7XZ1). Your rocket slides over its launch tube.
+
+## Project 4 Help: Spinning Top (OnShape)
+
+- 🧭 [Getting Started with OnShape (PDF)](guides/OnShape-Getting-Started.pdf): make your account (in class!), tour the screen, and learn how to hand in your work
+- 🌀 [Spinning Top in OnShape (PDF)](guides/SpinningTop-OnShape-Guide.pdf): draw half a top and spin it into 3D with Revolve
+- 📦 Challenge: [Box with a Lid in OnShape (PDF)](guides/BoxWithLid-OnShape-Guide.pdf): two parts that fit together
 
 ---
 

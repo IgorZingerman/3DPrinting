@@ -1,0 +1,191 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Spinning Top in OnShape</title><style>
+@page { size: Letter; margin: 0; }
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; background: #fff; }
+body { font-family: "Avenir Next", "Avenir", "Helvetica Neue", Arial, sans-serif; color: #1f2a44;
+       font-size: 12.5pt; line-height: 1.34; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+.page { width: 8.5in; height: 11in; padding: 0.5in 0.65in 0.7in; position: relative;
+        page-break-after: always; break-after: page; overflow: hidden; }
+.page:last-child { page-break-after: auto; break-after: auto; }
+h1, h2, h3, .big { font-family: "Arial Rounded MT Bold", "Avenir Next", Arial, sans-serif; font-weight: 700; }
+h1 { font-size: 36pt; line-height: 1.05; margin: 0 0 8px; }
+h2 { font-size: 21pt; margin: 0 0 10px; display: flex; align-items: center; gap: 12px; }
+h3 { font-size: 14.5pt; margin: 14px 0 6px; }
+p { margin: 6px 0; }
+.num { display: inline-flex; align-items: center; justify-content: center; width: 42px; height: 42px; border-radius: 50%;
+        background: #2a6fdb; color: #fff; font-size: 20pt; flex: none; }
+.sub { font-size: 15pt; color: #4a5672; margin: 0 0 18px; }
+.footer { position: absolute; left: 0.65in; right: 0.65in; bottom: 0.32in; display: flex; justify-content: space-between;
+          gap: 12px; font-size: 8pt; color: #7a849c; white-space: nowrap; border-top: 1px solid #d9dee8; padding-top: 6px; }
+ol.steps { margin: 6px 0 0; padding-left: 0; list-style: none; counter-reset: s; }
+ol.steps > li { counter-increment: s; position: relative; padding: 4px 0 4px 40px; min-height: 30px; }
+ol.steps > li::before { content: "☐"; position: absolute; left: 4px; top: 1px; font-size: 20pt; line-height: 1;
+                         color: #2a6fdb; font-family: "Apple Symbols", "Segoe UI Symbol", sans-serif; }
+kbd { display: inline-block; border: 1.5px solid #1f2a44; border-bottom-width: 3px; border-radius: 6px; padding: 0 7px;
+       font-family: Menlo, Consolas, monospace; font-size: 11pt; background: #f6f7fb; line-height: 1.45; white-space: nowrap; }
+.val { font-family: Menlo, Consolas, monospace; font-weight: 700; background: #fff3d6; border-radius: 4px; padding: 0 5px; }
+.box { border: 2.5px solid #1f2a44; border-radius: 14px; padding: 9px 16px; margin: 10px 0; }
+.tip { border-color: #2a6fdb; background: #eef4ff; }
+.warn { border-color: #e07a5f; background: #fff1ec; }
+.good { border-color: #2e9e6b; background: #ecf8f1; }
+.box .lbl { font-family: "Arial Rounded MT Bold", Arial, sans-serif; font-size: 12pt; text-transform: uppercase;
+             letter-spacing: .04em; margin-bottom: 2px; }
+.tip .lbl { color: #2a6fdb; } .warn .lbl { color: #c4513a; } .good .lbl { color: #2e9e6b; }
+.icon { width: 26px; height: 26px; vertical-align: -7px; background: #fff; border: 1.5px solid #1f2a44; border-radius: 6px; padding: 2px; }
+.cols { display: flex; gap: 22px; align-items: flex-start; }
+.cols > * { flex: 1; }
+.small { font-size: 11pt; }
+.muted { color: #4a5672; }
+/* cover */
+.cover-top { display: flex; align-items: center; gap: 10px; }
+.badge { display: inline-block; background: #ffd166; border-radius: 999px; padding: 3px 14px; font-weight: 700; font-size: 11pt; margin-right: 6px; }
+.needs { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 22px; margin-top: 10px; }
+.needs div { border-left: 5px solid #ffd166; padding-left: 10px; }
+.words dt { font-weight: 700; margin-top: 7px; }
+.words dd { margin: 0 0 0 0; }
+/* dot map */
+table.map { width: 100%; border-collapse: collapse; }
+table.map td { border-bottom: 1.5px solid #d9dee8; padding: 6px 8px; vertical-align: middle; }
+.fcell { width: 140px; white-space: nowrap; }
+.fcell svg { vertical-align: middle; }
+.fnum { display: inline-block; font-family: "Arial Rounded MT Bold", Arial; font-size: 26pt; vertical-align: middle; margin-left: 10px; }
+.opp { width: 130px; color: #4a5672; }
+.moves { font-size: 12pt; line-height: 1.5; columns: 2; column-gap: 18px; }
+/* order */
+.order { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px 14px; margin-top: 16px; }
+.ostep { border: 2.5px solid #1f2a44; border-radius: 14px; padding: 10px 12px 12px; text-align: center; position: relative; }
+.obadge { position: absolute; top: -12px; left: -12px; width: 32px; height: 32px; border-radius: 50%; background: #2a6fdb;
+           color: #fff; font-weight: 700; display: flex; align-items: center; justify-content: center; font-size: 14pt; }
+.oface { font-family: "Arial Rounded MT Bold", Arial; font-size: 15pt; margin-top: 4px; }
+.oturn { font-size: 20pt; font-weight: 700; color: #e07a5f; line-height: 1.1; }
+.odesc { font-size: 10.5pt; color: #4a5672; margin-top: 4px; }
+.checklist li { margin: 5px 0; }
+.lines div { border-bottom: 1.5px solid #b9c1d3; height: 26px; }
+a { color: #2a6fdb; }
+
+.blank { display: inline-block; border-bottom: 2px solid #1f2a44; height: 1.1em; vertical-align: -3px; margin: 0 3px; }
+.letter { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; border-radius: 50%;
+          border: 2px solid currentColor; font-weight: 700; font-size: 11pt; margin-right: 2px; background: #fff; }
+.tool { display: inline-block; border: 1.5px solid #1f2a44; border-radius: 6px; padding: 0 7px; font-weight: 700;
+        background: #eef4ff; font-size: 11.5pt; line-height: 1.45; white-space: nowrap; }
+table.dims { border-collapse: collapse; width: 100%; font-size: 12pt; }
+table.dims td { border-bottom: 1.5px solid #d9dee8; padding: 5px 6px; }
+table.dims td:first-child { width: 34px; }
+.teacher { border-color: #7a849c; background: #f6f7fb; font-size: 11pt; }
+.teacher .lbl { color: #4a5672; }
+.figure { text-align: center; margin: 6px 0; }
+.step-intro { margin: 0 0 4px; }
+</style></head><body><section class="page">
+  <div><span class="badge" style="background:#ffd166">Project 4</span><span class="badge" style="background:#cfe3ff">OnShape</span><span class="badge" style="background:#d6f2e2">About 45 min</span></div>
+  <h1 style="margin-top:16px">Spinning Top<br>in OnShape 🌀</h1>
+  <p class="sub">Draw <b>half</b> of a top, spin it around a line, and OnShape makes the whole 3D top for you!</p>
+  <h3>The big idea: Revolve</h3>
+  <p>A top is perfectly round. So instead of building it piece by piece, you draw the outline of <b>one half</b>
+  (like a top cut in half), and the <b>Revolve</b> tool spins that drawing all the way around a center line.
+  It’s like a pottery wheel! 🏺</p>
+  <div class="box tip"><div class="lbl">What makes a top spin a long time?</div>
+  <ul style="margin:4px 0 0 18px; padding:0">
+    <li><b>Wide and heavy near the bottom</b>: a wide disc keeps spinning, like a flywheel.</li>
+    <li><b>A sharp, centered tip</b>: less rubbing on the table.</li>
+    <li><b>A short handle</b>: just long enough to twist with your fingers.</li>
+  </ul></div>
+  <div class="box warn"><div class="lbl">The 3D printer rule</div>
+  Your top prints <b>upside down</b>, handle on the bed. The printer can’t print in mid-air, so slanted parts need to be
+  <b>steep</b> (no flatter than 45°). That’s why the starter design slants up to the handle instead of being flat.</div>
+  <div class="box"><div class="lbl">Before you start</div>
+  You need your OnShape account (see <b>Getting Started with OnShape</b>). Make a new document named
+  <b>Top – First Name Last Initial</b>, and set <b>Workspace units</b> to <b>Millimeter</b>.</div><div class="footer"><span>🌀 Spinning Top in OnShape</span><span>Page 1 of 5</span></div></section><section class="page">
+  <h2>🗺️ The starter design</h2>
+  <p class="step-intro">This is the half you’ll draw. The red center line is where it spins. Each letter is a size you’ll type in.</p>
+  <div class="figure"><svg width="600" viewBox="0 0 600 410" style="max-width:100%"><polygon points="250,370 120,272 120,240 224,136 224,45 250,45" fill="#f6f7fb" stroke="#7a849c" stroke-width="1.5" stroke-dasharray="5 4"/><polygon points="250,370 380,272 380,240 276,136 276,45 250,45" fill="#ffd166" stroke="#1f2a44" stroke-width="3" stroke-linejoin="round"/><line x1="250" y1="388" x2="250" y2="5.0" stroke="#c4513a" stroke-width="2" stroke-dasharray="10 4 2 4"/><text x="236" y="11.0" font-size="14" font-weight="700" fill="#c4513a" text-anchor="end" font-family="Avenir Next, Arial">center line</text><circle cx="250" cy="370" r="5" fill="#1f2a44"/><text x="260" y="390" font-size="13" fill="#1f2a44" font-family="Avenir Next, Arial">origin (the tip)</text><text x="224" y="356" font-size="13" fill="#7a849c" text-anchor="end" font-family="Avenir Next, Arial">the other half:</text><text x="224" y="372" font-size="13" fill="#7a849c" text-anchor="end" font-family="Avenir Next, Arial">Revolve makes it for you</text><line x1="250" y1="272.5" x2="380.0" y2="272.5" stroke="#2a6fdb" stroke-width="2"/><line x1="250" y1="266.5" x2="250" y2="278.5" stroke="#2a6fdb" stroke-width="2"/><line x1="380.0" y1="266.5" x2="380.0" y2="278.5" stroke="#2a6fdb" stroke-width="2"/><circle cx="315.0" cy="272.5" r="11" fill="#fff" stroke="#2a6fdb" stroke-width="2"/><text x="315.0" y="277.5" font-size="14" font-weight="700" fill="#2a6fdb" text-anchor="middle" font-family="Avenir Next, Arial">A</text><line x1="408.0" y1="370.0" x2="408.0" y2="272.5" stroke="#c4513a" stroke-width="2"/><line x1="402.0" y1="370.0" x2="414.0" y2="370.0" stroke="#c4513a" stroke-width="2"/><line x1="402.0" y1="272.5" x2="414.0" y2="272.5" stroke="#c4513a" stroke-width="2"/><circle cx="408.0" cy="321.25" r="11" fill="#fff" stroke="#c4513a" stroke-width="2"/><text x="408.0" y="326.25" font-size="14" font-weight="700" fill="#c4513a" text-anchor="middle" font-family="Avenir Next, Arial">B</text><line x1="408.0" y1="272.5" x2="408.0" y2="240.0" stroke="#2e9e6b" stroke-width="2"/><line x1="402.0" y1="272.5" x2="414.0" y2="272.5" stroke="#2e9e6b" stroke-width="2"/><line x1="402.0" y1="240.0" x2="414.0" y2="240.0" stroke="#2e9e6b" stroke-width="2"/><circle cx="408.0" cy="256.25" r="11" fill="#fff" stroke="#2e9e6b" stroke-width="2"/><text x="408.0" y="261.25" font-size="14" font-weight="700" fill="#2e9e6b" text-anchor="middle" font-family="Avenir Next, Arial">C</text><line x1="250" y1="23.0" x2="276.0" y2="23.0" stroke="#b8860b" stroke-width="2"/><line x1="250" y1="17.0" x2="250" y2="29.0" stroke="#b8860b" stroke-width="2"/><line x1="276.0" y1="17.0" x2="276.0" y2="29.0" stroke="#b8860b" stroke-width="2"/><circle cx="263.0" cy="23.0" r="11" fill="#fff" stroke="#b8860b" stroke-width="2"/><text x="263.0" y="28.0" font-size="14" font-weight="700" fill="#b8860b" text-anchor="middle" font-family="Avenir Next, Arial">D</text><line x1="304.0" y1="136.0" x2="304.0" y2="45.0" stroke="#8e44ad" stroke-width="2"/><line x1="298.0" y1="136.0" x2="310.0" y2="136.0" stroke="#8e44ad" stroke-width="2"/><line x1="298.0" y1="45.0" x2="310.0" y2="45.0" stroke="#8e44ad" stroke-width="2"/><circle cx="304.0" cy="90.5" r="11" fill="#fff" stroke="#8e44ad" stroke-width="2"/><text x="304.0" y="95.5" font-size="14" font-weight="700" fill="#8e44ad" text-anchor="middle" font-family="Avenir Next, Arial">E</text><line x1="460.0" y1="370.0" x2="460.0" y2="45.0" stroke="#1f2a44" stroke-width="2"/><line x1="454.0" y1="370.0" x2="466.0" y2="370.0" stroke="#1f2a44" stroke-width="2"/><line x1="454.0" y1="45.0" x2="466.0" y2="45.0" stroke="#1f2a44" stroke-width="2"/><circle cx="460.0" cy="207.5" r="11" fill="#fff" stroke="#1f2a44" stroke-width="2"/><text x="460.0" y="212.5" font-size="14" font-weight="700" fill="#1f2a44" text-anchor="middle" font-family="Avenir Next, Arial">F</text></svg></div>
+  <div class="cols">
+    <div>
+      <table class="dims">
+        <tr><td><span class="letter" style="color:#2a6fdb">A</span></td><td>Disc, center to edge</td><td><span class="val">20</span></td></tr>
+        <tr><td><span class="letter" style="color:#c4513a">B</span></td><td>Tip cone height</td><td><span class="val">15</span></td></tr>
+        <tr><td><span class="letter" style="color:#2e9e6b">C</span></td><td>Disc edge</td><td><span class="val">5</span></td></tr>
+      </table>
+    </div>
+    <div>
+      <table class="dims">
+        <tr><td><span class="letter" style="color:#b8860b">D</span></td><td>Handle, center to edge</td><td><span class="val">4</span></td></tr>
+        <tr><td><span class="letter" style="color:#8e44ad">E</span></td><td>Handle length</td><td><span class="val">14</span></td></tr>
+        <tr><td><span class="letter" style="color:#1f2a44">F</span></td><td>Total height</td><td><span class="val">50</span></td></tr>
+      </table>
+      <p class="small muted">All sizes in mm. The finished top is 40 mm wide (2 × <span class="letter" style="color:#2a6fdb">A</span>) and 50 mm tall.</p>
+    </div>
+  </div>
+  <div class="box tip"><div class="lbl">Why only half the width?</div>
+  You only draw from the center line out to the edge. When it spins around, the other half appears by itself.
+  So <span class="letter" style="color:#2a6fdb">A</span> = 20 makes a disc that’s <b>40 mm</b> across!</div><div class="footer"><span>🌀 Spinning Top in OnShape</span><span>Page 2 of 5</span></div></section><section class="page">
+  <h2><span class="num">1</span>Start a sketch</h2>
+  <ol class="steps">
+    <li>Click <span class="tool">Sketch</span> in the toolbar, then click the <b>Front</b> plane (in the graphics area or the feature list).</li>
+    <li>OnShape turns the view so you’re looking straight at the plane. If it doesn’t, press <kbd>N</kbd> (it means “look straight at my sketch”).</li>
+  </ol>
+
+  <h2 style="margin-top:12px"><span class="num">2</span>Draw the outline</h2>
+  <p class="step-intro">Use the <span class="tool">Line</span> tool (<kbd>L</kbd>). Click once at each corner. Don’t worry about exact sizes yet, just get the shape right!</p>
+  <ol class="steps">
+    <li>Click on the <b>origin</b> (the dot in the middle). That’s the tip of your top.</li>
+    <li>Click up and to the right (the slanted cone), then straight up a little (the disc edge).</li>
+    <li>Click up and to the left (the slant toward the handle), then straight up (the handle).</li>
+    <li>Click straight left, so you land right above the origin. Then click back <b>on the origin</b> to close the shape.</li>
+    <li>Press <kbd>Esc</kbd>. If the inside of your shape turns <b>gray/shaded</b>, it’s closed. 🎉 If not, a corner isn’t connected: drag the loose end onto the point it should touch.</li>
+  </ol>
+  <div class="box tip"><div class="lbl">Straight lines</div>When a line is perfectly up-down or left-right, OnShape shows a little
+  <b>|</b> or <b>—</b> symbol next to it. You want those on the edge, handle, top and center lines!</div>
+
+  <h2 style="margin-top:12px"><span class="num">3</span>Add the sizes</h2>
+  <ol class="steps">
+    <li>Click <span class="tool">Dimension</span> (<kbd>D</kbd>). Click a line, move your mouse to place the number, and click. Type the size and press <kbd>Enter</kbd>.</li>
+    <li>To size <span class="letter" style="color:#2a6fdb">A</span> and <span class="letter" style="color:#b8860b">D</span>: click the <b>center line</b>, then the edge line, and place it above.</li>
+    <li>To size <span class="letter" style="color:#c4513a">B</span>: click the <b>origin</b>, then the corner at the end of the cone. Move your mouse to the <b>side</b> so the number measures up-and-down.</li>
+    <li>Do all six: <span class="letter" style="color:#2a6fdb">A</span> 20, <span class="letter" style="color:#c4513a">B</span> 15, <span class="letter" style="color:#2e9e6b">C</span> 5, <span class="letter" style="color:#b8860b">D</span> 4, <span class="letter" style="color:#8e44ad">E</span> 14, <span class="letter" style="color:#1f2a44">F</span> 50. Then click the green ✔ to finish the sketch.</li>
+  </ol><div class="footer"><span>🌀 Spinning Top in OnShape</span><span>Page 3 of 5</span></div></section><section class="page">
+  <h2><span class="num">4</span>Revolve it!</h2>
+  <ol class="steps">
+    <li>Click <span class="tool">Revolve</span> in the toolbar.</li>
+    <li>For <b>Faces and sketch regions</b>, click inside your shaded shape.</li>
+    <li>For <b>Revolve axis</b>, click the <b>center line</b> (the line going straight up from the origin).</li>
+    <li>Make sure it says <b>Full</b>, then click the green ✔. Spin the view around… it’s a top! 🌀</li>
+  </ol>
+  <div class="box warn"><div class="lbl">Uh oh?</div><b>Revolve won’t work or looks weird?</b> You probably picked the wrong line as the axis.
+  Right-click <b>Revolve 1</b> in the feature list, choose <b>Edit</b>, and pick the center line again.</div>
+
+  <h2 style="margin-top:12px"><span class="num">5</span>Round the sharp edges (optional)</h2>
+  <ol class="steps">
+    <li>Click <span class="tool">Fillet</span>. Click the sharp edges around the disc. Set the radius to <span class="val">1</span> mm and click ✔.</li>
+    <li>Don’t round the tip too much. A sharp tip spins longer!</li>
+  </ol>
+
+  <h2 style="margin-top:12px"><span class="num">6</span>Make it yours 🎨</h2>
+  <p class="step-intro">Now experiment! Right-click <b>Sketch 1</b> → <b>Edit</b>, change a size, and click ✔. The whole top updates by itself.</p>
+  <ul style="margin:0 0 0 20px; padding:0">
+    <li>Make the disc wider or narrower (keep the whole top under <span class="val">60</span> mm wide).</li>
+    <li>Try a curvy outline with the <span class="tool">Tangent arc</span> tool instead of straight lines.</li>
+    <li>Remember the printer rule: no slants flatter than 45°, and no overhanging ledges.</li>
+  </ul>
+  <p style="margin-top:10px"><b>My top’s sizes:</b> A <span class="blank" style="width:40px"></span> B <span class="blank" style="width:40px"></span> C <span class="blank" style="width:40px"></span> D <span class="blank" style="width:40px"></span> E <span class="blank" style="width:40px"></span> F <span class="blank" style="width:40px"></span></p><div class="footer"><span>🌀 Spinning Top in OnShape</span><span>Page 4 of 5</span></div></section><section class="page">
+  <h2><span class="num">7</span>Hand it in 📤</h2>
+  <ol class="steps">
+    <li>Check the document name says <b>Top – First Name Last Initial</b>. Click it to fix it if needed.</li>
+    <li>Click <b>Share</b> (top right), type your teacher’s email (<span class="val">iggyzs@yahoo.com</span>), choose <b>Can view</b>, turn on <b>Export</b>, and click <b>Share</b>.</li>
+    <li>Tell your teacher your top is ready to print! 🖨️</li>
+  </ol>
+
+  <h2 style="margin-top:14px">🏆 Spin-off challenge</h2>
+  <p>When the tops are printed, we’ll spin them and time them. Fill this in on spin day!</p>
+  <table class="sheet" style="width:100%; border-collapse:collapse">
+    <tr><th style="text-align:left">Spin</th><th style="text-align:left">Time (seconds)</th><th style="text-align:left">Notes (wobbly? fell over? walked around?)</th></tr>
+    <tr><td style="height:32px; border-bottom:1.5px solid #d9dee8">1</td><td style="border-bottom:1.5px solid #d9dee8"></td><td style="border-bottom:1.5px solid #d9dee8"></td></tr>
+    <tr><td style="height:32px; border-bottom:1.5px solid #d9dee8">2</td><td style="border-bottom:1.5px solid #d9dee8"></td><td style="border-bottom:1.5px solid #d9dee8"></td></tr>
+    <tr><td style="height:32px; border-bottom:1.5px solid #d9dee8">3</td><td style="border-bottom:1.5px solid #d9dee8"></td><td style="border-bottom:1.5px solid #d9dee8"></td></tr>
+  </table>
+
+  <h2 style="margin-top:14px">🤔 Think about it</h2>
+  <p><b>1. Whose top spun the longest in class? What was different about its shape?</b></p>
+  <div class="lines"><div></div><div></div></div>
+  <p style="margin-top:10px"><b>2. What’s one thing that’s easier in OnShape than in TinkerCad? What’s harder?</b></p>
+  <div class="lines"><div></div><div></div></div>
+  <div class="box tip" style="margin-top:14px"><div class="lbl">Done early?</div>Try the <b>Box with a Lid</b> challenge!</div><div class="footer"><span>🌀 Spinning Top in OnShape</span><span>Page 5 of 5</span></div></section></body></html>
